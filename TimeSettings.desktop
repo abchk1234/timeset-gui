@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=TimeSettings
+Exec=timeset-gui
+Comment="A python-gui for managing system date and time"
+Icon=/usr/share/icons/manjaro.png
+NoDisplay=false
+Type=Application
+Categories=System;Settings;
