@@ -1,20 +1,20 @@
-Maintainer: aaditya	  aaditya_gnulinux@zoho.com
+#Maintainer: aaditya	  aaditya_gnulinux@zoho.com
 
 pkgname=timeset-gui
 pkgver=1.1
-pkgrel=1
-_git=4c91651acc22100977ce4923d52959485627ef01
+pkgrel=2
 pkgdesc="A python-gui for managing system date and time."
-url="http://forum.manjaro.org/index.php?topic=7067.0
+url="http://forum.manjaro.org/index.php?topic=7067.0"
 arch=('any')
 license=('GPL')
-depends=('gksudo' 'python' 'python-gobject' 'pywebkitgtk')
+depends=('gksu' 'python' 'python-gobject' 'pywebkitgtk')
 optdepends=('ntp')
-source=("http://git.manjaro.org/aadityabagga/timeset-gui/raw/$_git/timeset-gui")
-md5sums=('fe90faa43a668f592a3475ef0e7e5021067a8256')
+source=("http://git.manjaro.org/aadityabagga/timeset-gui/repository/archive")
+sha1sums=('3c6173a22f2d77f7d9a54233425cc0c5262acf04')
 package() {
-  cd "${srcdir}"
+  cd "${srcdir}/${pkgname}.git"
   install -Dm755 "${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
+  install -Dm755 "TimeSettings.desktop" "${pkgdir}/usr/share/applications/TimeSettings.desktop"
 }
 
 # vim:set ts=2 sw=2 et:
