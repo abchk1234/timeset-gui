@@ -257,7 +257,7 @@ class MainWindow(Gtk.Window):
         dialog = set_timezone(self)
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
-            sp = subprocess.Popen(shlex.split('timedatectl set-time %s' % dialog.entry.get_text()), stdout=subprocess.PIPE)
+            sp = subprocess.Popen(shlex.split('timedatectl set-timezone %s' % dialog.entry.get_text()), stdout=subprocess.PIPE)
             out, err = sp.communicate()
         dialog.destroy()
 
