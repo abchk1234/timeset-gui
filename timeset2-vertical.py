@@ -10,6 +10,8 @@ class on_read_time_from_hw_clock:
         window2 = Gtk.Window()
         window2.set_title("Hardware Clock Time")
         viewbox = Gtk.TextView()
+        viewbox.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+        viewbox.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         viewbox.set_property('editable', False)
         viewbox.set_cursor_visible(False)
         viewbox.set_border_width(10)
@@ -28,6 +30,8 @@ class on_show_current_date_and_time:
         window2 = Gtk.Window()
         window2.set_title("Current date and time")
         viewbox = Gtk.TextView()
+        viewbox.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+        viewbox.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         viewbox.set_property('editable', False)
         viewbox.set_cursor_visible(False)
         viewbox.set_border_width(10)
@@ -51,6 +55,8 @@ class on_show_timezones:
         scrolledwindow.set_vexpand(True)
         window2.add(scrolledwindow)
         viewbox = Gtk.TextView()
+        viewbox.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+        viewbox.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         viewbox.set_property('editable', False)
         viewbox.set_cursor_visible(False)
         viewbox.set_border_width(10)
@@ -77,6 +83,8 @@ class control_the_hw_clock(Gtk.Dialog):
     def __init__(self, parent):
         Gtk.Dialog.__init__(self, "Control the HW clock", parent,
             Gtk.DialogFlags.MODAL, buttons=("UTC", Gtk.ResponseType.OK, "Local time", Gtk.ResponseType.CANCEL))
+        self.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+        self.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
         box = self.get_content_area()
         label = Gtk.Label('Adjust the Hardware clock to:\n')
         box.add(label)
@@ -86,6 +94,8 @@ class disable_ntp_at_startup(Gtk.Dialog):
     def __init__(self, parent):
         Gtk.Dialog.__init__(self, "Disable NTP at startup", parent,
             Gtk.DialogFlags.MODAL, buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK))
+        self.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+        self.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
         box = self.get_content_area()
         label = Gtk.Label('Click OK if you want to disable NTP at system startup\n')
         box.add(label)
@@ -95,6 +105,8 @@ class enable_ntp_at_startup(Gtk.Dialog):
     def __init__(self, parent):
         Gtk.Dialog.__init__(self, "Enable NTP at startup", parent,
             Gtk.DialogFlags.MODAL, buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK))
+        self.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+        self.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
         box = self.get_content_area()
         label = Gtk.Label('Click OK if you want to enable NTP at system startup\n')
         box.add(label)
@@ -104,6 +116,8 @@ class set_ntp_at_statup(Gtk.Dialog):
     def __init__(self, parent):
         Gtk.Dialog.__init__(self, "Enable & disable ntp", parent,
             Gtk.DialogFlags.MODAL, buttons=("Enable", Gtk.ResponseType.OK, "Disable", Gtk.ResponseType.CANCEL))
+        self.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+        self.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
         box = self.get_content_area()
         label = Gtk.Label('Enable or Disable NTP at system startup\n')
         box.add(label)
@@ -116,6 +130,8 @@ class set_timezone(Gtk.Dialog):
             Gtk.DialogFlags.MODAL, buttons=(
             Gtk.STOCK_OK, Gtk.ResponseType.OK,
             Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
+        self.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+        self.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
         box = self.get_content_area()
         label = Gtk.Label('Enter the TimeZone. It should be like \nContinent/City "Europe/Berlin"')
         box.add(label)
@@ -130,6 +146,8 @@ class set_time_manually(Gtk.Dialog):
             Gtk.DialogFlags.MODAL, buttons=(
             Gtk.STOCK_OK, Gtk.ResponseType.OK,
             Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
+        self.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+        self.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
         box = self.get_content_area()
         label = Gtk.Label('Enter the time. The time may be specified\nin the format "2013-11-18 09:12:45"')
         box.add(label)
@@ -145,6 +163,8 @@ class MainWindow(Gtk.Window):
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                 Gtk.ButtonsType.OK, "Warning !")
+            dialog2.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+            dialog2.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
             dialog2.format_secondary_text(
                 "{0}".format(err))
             dialog2.run()
@@ -156,6 +176,8 @@ class MainWindow(Gtk.Window):
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                 Gtk.ButtonsType.OK, "Warning !")
+            dialog2.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+            dialog2.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
             dialog2.format_secondary_text(
                 "{0}".format(err))
             dialog2.run()
@@ -176,16 +198,34 @@ class MainWindow(Gtk.Window):
         dialog = disable_ntp_at_startup(self)
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
-            sp = subprocess.Popen(shlex.split('systemctl disable ntpd'), stdout=subprocess.PIPE)
-            out, err = sp.communicate()
+            sp = subprocess.Popen(shlex.split('systemctl disable ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out, err_disable_ntp = sp.communicate()
+            if err_disable_ntp:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
+                    Gtk.ButtonsType.OK, "Warning !")
+                dialog2.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+                dialog2.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
+                dialog2.format_secondary_text(
+                    "{0}".format(err_disable_ntp))
+                dialog2.run()
+                dialog2.destroy()
         dialog.destroy()
 
     def on_enable_ntp_at_startup(self, widget):
         dialog = enable_ntp_at_startup(self)
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
-            sp = subprocess.Popen(shlex.split('systemctl enable ntpd'), stdout=subprocess.PIPE)
-            out, err = sp.communicate()
+            sp = subprocess.Popen(shlex.split('systemctl enable ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out, err_enable_ntp = sp.communicate()
+            if err_enable_ntp:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
+                    Gtk.ButtonsType.OK, "Warning !")
+                dialog2.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+                dialog2.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
+                dialog2.format_secondary_text(
+                    "{0}".format(err_enable_ntp))
+                dialog2.run()
+                dialog2.destroy()
         dialog.destroy()
 
     def on_set_ntp_at_statup(self, widget):
@@ -205,6 +245,8 @@ class MainWindow(Gtk.Window):
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                 Gtk.ButtonsType.OK, "Warning !")
+            dialog2.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+            dialog2.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
             dialog2.format_secondary_text(
                 "Cannot synchronize from the network right now.\nMake sure that you are running this program as root and try again.")
             dialog2.run()
@@ -229,10 +271,14 @@ class MainWindow(Gtk.Window):
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK, "Warning !")
+                dialog2.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+                dialog2.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
                 dialog2.format_secondary_text(
                     "{0} is not a valid timezone".format(entered_text))
                 dialog2.run()
                 dialog2.destroy()
+            dialog.destroy()
+        if response == Gtk.ResponseType.CANCEL:
             dialog.destroy()
 
     def on_set_time_manually(self, widget):
@@ -245,10 +291,14 @@ class MainWindow(Gtk.Window):
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK, "Warning !")
+                dialog2.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
+                dialog2.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
                 dialog2.format_secondary_text(
                     "{0} is not a valid time".format(entered_text))
                 dialog2.run()
                 dialog2.destroy()
+            dialog.destroy()
+        if response == Gtk.ResponseType.CANCEL:
             dialog.destroy()
 
     def __init__(self):
