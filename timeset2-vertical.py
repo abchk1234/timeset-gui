@@ -114,7 +114,7 @@ class enable_ntp_at_startup(Gtk.Dialog):
 
 class set_ntp_at_statup(Gtk.Dialog):
     def __init__(self, parent):
-        Gtk.Dialog.__init__(self, "Enable & disable ntp", parent,
+        Gtk.Dialog.__init__(self, "Control if NTP used or not", parent,
             Gtk.DialogFlags.MODAL, buttons=("Enable", Gtk.ResponseType.OK, "Disable", Gtk.ResponseType.CANCEL))
         self.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
         self.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
@@ -133,7 +133,7 @@ class set_timezone(Gtk.Dialog):
         self.override_background_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(0, 0, 0, 1))
         self.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 0, 1, 1))
         box = self.get_content_area()
-        label = Gtk.Label('Enter the TimeZone. It should be like \nContinent/City "Europe/Berlin"')
+        label = Gtk.Label('Enter the TimeZone. It should be like \nContinent/City "Europe/Berlin"\nYou can find out your timezone at\nthe second menu option')
         box.add(label)
         self.entry = Gtk.Entry()
         box.add(self.entry)
@@ -240,7 +240,7 @@ class MainWindow(Gtk.Window):
         dialog.destroy()
 
     def on_sync_from_network(self, widget):
-        sp = subprocess.Popen(shlex.split("ntpdate -u pool.ntp.org"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        sp = subprocess.Popen(shlex.split("ntpdate -u 0.pool.ntp.org"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = sp.communicate()
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
@@ -278,7 +278,7 @@ class MainWindow(Gtk.Window):
                 dialog2.run()
                 dialog2.destroy()
             dialog.destroy()
-        if response == Gtk.ResponseType.CANCEL:
+        else:
             dialog.destroy()
 
     def on_set_time_manually(self, widget):
@@ -298,7 +298,7 @@ class MainWindow(Gtk.Window):
                 dialog2.run()
                 dialog2.destroy()
             dialog.destroy()
-        if response == Gtk.ResponseType.CANCEL:
+        else:
             dialog.destroy()
 
     def __init__(self):
@@ -316,7 +316,7 @@ class MainWindow(Gtk.Window):
         grid.set_column_spacing(5)
         vbox.add(grid)
 
-        label = Gtk.Label(label="1. Current Date and Time")
+        label = Gtk.Label(label="1. Show Current Date and Time Configuration")
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 1, 1, 1)
 
@@ -325,7 +325,7 @@ class MainWindow(Gtk.Window):
         self.button1.connect("clicked", self.show_current_date_and_time)
         grid.attach(self.button1, Gtk.PositionType.RIGHT, 1, 1, 1)
 
-        label = Gtk.Label(label="2. Known Timezones")
+        label = Gtk.Label(label="2. Show Timezones")
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 2, 1, 1)
 
@@ -342,19 +342,19 @@ class MainWindow(Gtk.Window):
         self.button_about.connect("clicked", self.on_set_timezones)
         grid.attach(self.button_about, Gtk.PositionType.RIGHT, 3, 1, 1)
 
-        label = Gtk.Label(label="4. Synchronize Time")
+        label = Gtk.Label(label="4. Synchronize Time from the network: NTP")
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 4, 1, 1)
         self.button_about = Gtk.ToolButton(stock_id=Gtk.STOCK_YES)
-        self.button_about.set_tooltip_text("Synchronize Time from the Network")
+        self.button_about.set_tooltip_text("Synchronize Time from the Network using NTP")
         self.button_about.connect("clicked", self.on_sync_from_network)
         grid.attach(self.button_about, Gtk.PositionType.RIGHT, 4, 1, 1)
 
-        label = Gtk.Label(label="5. Control NTP")
+        label = Gtk.Label(label="5. Control whether NTP is used or not")
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 5, 1, 1)
         self.button_about = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_QUESTION)
-        self.button_about.set_tooltip_text("Control whether NTP is used or not")
+        self.button_about.set_tooltip_text("Control whether NTP is used for system time or not")
         self.button_about.connect("clicked", self.on_set_ntp_at_statup)
         grid.attach(self.button_about, Gtk.PositionType.RIGHT, 5, 1, 1)
 
@@ -362,7 +362,7 @@ class MainWindow(Gtk.Window):
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 6, 1, 1)
         self.button_about = Gtk.ToolButton(stock_id=Gtk.STOCK_APPLY)
-        self.button_about.set_tooltip_text("Enable NTP at Startup")
+        self.button_about.set_tooltip_text("Enable NTP at Startup\nTime will be synchronised with NTP at every boot")
         self.button_about.connect("clicked", self.on_enable_ntp_at_startup)
         grid.attach(self.button_about, Gtk.PositionType.RIGHT, 6, 1, 1)
 
@@ -375,7 +375,7 @@ class MainWindow(Gtk.Window):
         self.button1.connect("clicked", self.on_disable_ntp_at_startup)
         grid.attach(self.button1, Gtk.PositionType.RIGHT, 7, 1, 1)
 
-        label = Gtk.Label(label="8. Control the HW Clock")
+        label = Gtk.Label(label="8. HW Clock in UTC or Local time")
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 8, 1, 1)
 
@@ -384,7 +384,7 @@ class MainWindow(Gtk.Window):
         self.button_about.set_tooltip_text("Control whether Hardware Clock is in Local Time or not")
         grid.attach(self.button_about, Gtk.PositionType.RIGHT, 8, 1, 1)
 
-        label = Gtk.Label(label="9. Read time from HW Clock")
+        label = Gtk.Label(label="9. Read time from H/W Clock")
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 9, 1, 1)
         self.button_about = Gtk.ToolButton(stock_id=Gtk.STOCK_ABOUT)
@@ -392,7 +392,7 @@ class MainWindow(Gtk.Window):
         self.button_about.connect("clicked", self.read_time_from_hw_clock)
         grid.attach(self.button_about, Gtk.PositionType.RIGHT, 9, 1, 1)
 
-        label = Gtk.Label(label="10. Synchronize HW Clock")
+        label = Gtk.Label(label="10. Synchronize H/W Clock to system time")
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 10, 1, 1)
         self.button_about = Gtk.ToolButton(stock_id=Gtk.STOCK_YES)
@@ -400,7 +400,7 @@ class MainWindow(Gtk.Window):
         self.button_about.connect("clicked", self.on_sync_hw_clock_to_system_time)
         grid.attach(self.button_about, Gtk.PositionType.RIGHT, 10, 1, 1)
 
-        label = Gtk.Label(label="11. Synchronize Time 2")
+        label = Gtk.Label(label="11. Synchronize System Time from H/W Clock")
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 11, 1, 1)
         self.button_about = Gtk.ToolButton(stock_id=Gtk.STOCK_YES)
@@ -412,7 +412,7 @@ class MainWindow(Gtk.Window):
         label.override_color(Gtk.StateFlags.NORMAL, Gdk.RGBA(1, 1, 1, 1))
         grid.attach(label, Gtk.PositionType.LEFT, 12, 1, 1)
         self.button_about = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_QUESTION)
-        self.button_about.set_tooltip_text("Set System Time manually")
+        self.button_about.set_tooltip_text("Set Time manually")
         self.button_about.connect("clicked", self.on_set_time_manually)
         grid.attach(self.button_about, Gtk.PositionType.RIGHT, 12, 1, 1)
 
