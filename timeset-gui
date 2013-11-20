@@ -3,7 +3,7 @@ import shlex
 import subprocess
 from gi.repository import Gtk
 
-program_icon = "/usr/share/icons/timeset-gui.png"
+program_icon = "/usr/share/icons/timeset-gui-icon.png"
 
 class on_read_time_from_hw_clock:
     def __init__(self):
