@@ -14,7 +14,7 @@ sha1sums=('SKIP')
 package() {
   cd "${srcdir}/${pkgname}.git"
   install -Dm755 "${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
-  install -Dm644 "$time-admin.png" "${pkgdir}/usr/share/icons/timeset-gui.png"
+  install -Dm644 "time-admin.png" "${pkgdir}/usr/share/icons/timeset-gui.png"
   install -Dm755 "TimeSettings.desktop" "${pkgdir}/usr/share/applications/TimeSettings.desktop"
 }
 
