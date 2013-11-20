@@ -1,15 +1,15 @@
 Its a python-gui for managing system date and time.
 
-##Dependencies-
+#Dependencies-
 
 *gksu
 *python
 *python-gobject
 *pywebkitgtk
 
-##Author-
+Author-
 Frodouser-senior
-<a href=https://github.com/wifiextender/timeset>https://github.com/wifiextender/timeset</a>
+https://github.com/wifiextender/timeset
 
 Contributor-
 Aaditya Bagga
