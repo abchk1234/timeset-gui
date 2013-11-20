@@ -1,8 +1,8 @@
 #Maintainer: aaditya	  aaditya_gnulinux@zoho.com
 
 pkgname=timeset-gui
-pkgver=1.5
-pkgrel=4
+pkgver=1.6
+pkgrel=1
 pkgdesc="A python-gui for managing system date and time."
 url="http://forum.manjaro.org/index.php?topic=7067.0"
 arch=('any')
