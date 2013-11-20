@@ -2,7 +2,7 @@
 
 pkgname=timeset-gui
 pkgver=1.5
-pkgrel=1
+pkgrel=3
 pkgdesc="A python-gui for managing system date and time."
 url="http://forum.manjaro.org/index.php?topic=7067.0"
 arch=('any')
@@ -15,6 +15,7 @@ package() {
   cd "${srcdir}/${pkgname}.git"
   install -Dm755 "${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
   install -Dm644 "time-admin.png" "${pkgdir}/usr/share/icons/timeset-gui.png"
+  install -Dm644 "logo3.png" "${pkgdir}/usr/share/icons/timeset-gui-logo.png"
   install -Dm755 "TimeSettings.desktop" "${pkgdir}/usr/share/applications/TimeSettings.desktop"
 }
 
