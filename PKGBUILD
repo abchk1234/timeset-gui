@@ -1,8 +1,8 @@
 #Maintainer: aaditya	  aaditya_gnulinux@zoho.com
 
 pkgname=timeset-gui
-pkgver=1.6
-pkgrel=3
+pkgver=1.7
+pkgrel=1
 pkgdesc="A python-gui for managing system date and time."
 url="http://git.manjaro.org/aadityabagga/timeset-gui"
 arch=('any')
