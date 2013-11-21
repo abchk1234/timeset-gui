@@ -82,7 +82,7 @@ class set_timezone(Gtk.Dialog):
             "List timezones", Gtk.ResponseType.APPLY,
             Gtk.STOCK_OK, Gtk.ResponseType.OK))
         box = self.get_content_area()
-        label = Gtk.Label('Enter the timeZone. It should be like \nContinent/City - Europe/Berlin')
+        label = Gtk.Label('Enter the timezone. It should be like \nContinent/City - Europe/Berlin')
         box.add(label)
         listz = Gtk.ListStore(str)
         for timezone in [
