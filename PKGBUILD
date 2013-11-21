@@ -2,9 +2,9 @@
 
 pkgname=timeset-gui
 pkgver=1.6
-pkgrel=2
+pkgrel=3
 pkgdesc="A python-gui for managing system date and time."
-url="http://forum.manjaro.org/index.php?topic=7067.0"
+url="http://git.manjaro.org/aadityabagga/timeset-gui"
 arch=('any')
 license=('GPL')
 depends=('gksu' 'python' 'python-gobject' 'pywebkitgtk')
