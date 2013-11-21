@@ -518,7 +518,7 @@ class set_time_manually(Gtk.Dialog):
             Gtk.STOCK_OK, Gtk.ResponseType.OK,
             Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
-        label = Gtk.Label('Enter the time. The time may be formatted\nlike this: 2013-11-18 09:12:45;\nor use just "hh:mm"')
+        label = Gtk.Label('Enter the time. The time may be formatted\nlike this: 2013-11-18 09:12:45\nor use just "hh:mm"')
         box.add(label)
         self.entry = Gtk.Entry()
         box.add(self.entry)
