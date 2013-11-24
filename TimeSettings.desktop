@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Time Settings
-Exec=pkexec timeset-gui
+Exec=gksudo timeset-gui
 Comment="A python-gui for managing system date and time"
 Icon=/usr/share/icons/timeset-gui-icon.png
 NoDisplay=false
