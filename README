@@ -3,9 +3,9 @@ Its a python-gui for managing system date and time.
 #Dependencies-
 
 *gksu
+*ntp
 *python
 *python-gobject
-*pywebkitgtk
 
 Author-
 Frodouser-senior
