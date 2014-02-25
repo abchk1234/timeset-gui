@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 import shlex
 import subprocess
 from gi.repository import Gtk
@@ -129,9 +129,11 @@ class MainWindow(Gtk.Window):
                 "{0}".format(err))
             dialog2.run()
             dialog2.destroy()
-        else:
-            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, "System time synchronized to hardware clock!")
-            dialog2.format_secondary_text("{0}".format(out))
+	else:
+	    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,
+                Gtk.ButtonsType.OK, "System time synchronized to hardware clock!")
+            dialog2.format_secondary_text(
+                "{0}".format(out))
             dialog2.run()
             dialog2.destroy()
 
@@ -145,8 +147,8 @@ class MainWindow(Gtk.Window):
                 "{0}".format(err))
             dialog2.run()
             dialog2.destroy()
-        else:
-            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,
+	else:
+	    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK, "Hardware clock synchronized to system time!")
             dialog2.format_secondary_text(
                 "{0}".format(out))
