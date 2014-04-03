@@ -13,3 +13,14 @@ https://github.com/wifiextender/timeset
 
 Contributor-
 Aaditya Bagga
+
+#Installation-
+
+Available in the Manjaro Linux reposotiries as timeset-gui.
+
+Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/timeset-gui/).
+
+#Usage-
+
+(as root)
+# timeset-gui
