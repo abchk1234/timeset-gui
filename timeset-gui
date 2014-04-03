@@ -338,6 +338,7 @@ class MainWindow(Gtk.Window):
         self.button_10.connect("clicked", self.on_set_time_manually)
         grid.attach(self.button_10, Gtk.PositionType.RIGHT, 10, 1, 1)
 
+
 if __name__ == '__main__':
     win = MainWindow()
     win.connect("delete-event", Gtk.main_quit)
