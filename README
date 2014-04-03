@@ -7,13 +7,6 @@ Its a python-gui for managing system date and time.
 *python
 *python-gobject
 
-Author-
-Frodouser-senior
-https://github.com/wifiextender/timeset
-
-Contributor-
-Aaditya Bagga
-
 #Installation-
 
 Available in the Manjaro Linux reposotiries as timeset-gui.
