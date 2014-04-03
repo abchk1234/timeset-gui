@@ -6,10 +6,11 @@ Its a python-gui for managing system date and time.
 *ntp
 *python
 *python-gobject
+*systemd
 
 #Installation-
 
-Available in the Manjaro Linux reposotiries as timeset-gui.
+Available in the Manjaro Linux repository. 
 
 Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/timeset-gui/).
 
