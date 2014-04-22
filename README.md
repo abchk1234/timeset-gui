@@ -21,4 +21,5 @@ Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/ti
 #Usage-
 
 (as root)
+
  # timeset-gui
