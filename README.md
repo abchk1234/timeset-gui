@@ -22,4 +22,4 @@ Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/ti
 
 (as root)
 
- # timeset-gui
+ timeset-gui
