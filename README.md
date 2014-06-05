@@ -6,15 +6,15 @@ gksu (for becoming root when running the application from system menu)
 
 ntp (for synchronising time from the network)
 
-python
+python2
 
-python-gobject
+python2-gobject
 
 systemd
 
 #Installation-
 
-Available in the Manjaro Linux repository. (To check, use the command <i>pacman -Ss timeset-gui</i>)
+Available in the Manjaro Linux repository. (To check use <i>pacman -Ss timeset-gui</i>)
 
 Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/timeset-gui/).
 
@@ -26,7 +26,12 @@ Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/ti
  # timeset-gui
 </pre>
 
+#Screenshot
+
+<a href="http://s1198.photobucket.com/user/chk1827/media/timeset-gui-2.png.html" target="_blank"><img src="http://i1198.photobucket.com/albums/aa447/chk1827/timeset-gui-2.png" border="0" alt=" photo timeset-gui-2.png"/></a>
+
 #Links-
 
 https://github.com/aadityabagga/timeset
+
 https://forum.manjaro.org/index.php?topic=7067.0
