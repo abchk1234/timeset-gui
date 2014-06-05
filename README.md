@@ -28,7 +28,7 @@ Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/ti
 
 #Screenshot
 
-<a href="http://s1198.photobucket.com/user/chk1827/media/timeset-gui-2.png.html" target="_blank"><img src="http://i1198.photobucket.com/albums/aa447/chk1827/timeset-gui-2.png" border="0" alt=" photo timeset-gui-2.png" width=250 height=400/></a>
+<a href="http://s1198.photobucket.com/user/chk1827/media/timeset-gui-2.png.html" target="_blank"><img src="http://i1198.photobucket.com/albums/aa447/chk1827/timeset-gui-2.png" border="0" alt=" photo timeset-gui-2.png" width=280 height=380/></a>
 
 #Links-
 
