@@ -10,7 +10,7 @@ localedir = /usr/share/locale
 icons = /usr/share/icons
 deskdir = /usr/share/applications
 mandir = /usr/share/man/man1/
-docdir = /usr/share/doc/$(NAME)
+docdir = /usr/share/$(NAME)
 appdir = /usr/share/timeset-gui-$(VERSION)
 
 all:
