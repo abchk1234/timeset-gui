@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Time Settings
-Exec=gksudo timeset-gui
-Comment="A python-gui for managing system date and time"
-Icon=/usr/share/icons/timeset-gui-icon.png
-NoDisplay=false
-Type=Application
-Categories=System;
-Encoding=UTF-8
