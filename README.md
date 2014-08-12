@@ -20,7 +20,7 @@ systemd
  # make install
 </pre>
 
-For Manjaro Linux users, its available in the Manjaro Linux repository. (To check use <i>pacman -Ss timeset-gui</i>)
+For Manjaro Linux users, its available in the Manjaro Linux repository (To check use <i>pacman -Ss timeset-gui</i>).
 
 Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/timeset-gui/).
 
@@ -34,7 +34,7 @@ Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/ti
 
 #Screenshot
 
-<a href="http://s1198.photobucket.com/user/chk1827/media/timeset-gui-2.png.html" target="_blank"><img src="http://i1198.photobucket.com/albums/aa447/chk1827/timeset-gui-2.png" border="0" alt=" photo timeset-gui-2.png" width=270 height=310/></a>
+<a href="http://s1198.photobucket.com/user/chk1827/media/timeset-gui-2.png.html" target="_blank"><img src="http://i1198.photobucket.com/albums/aa447/chk1827/timeset-gui-2.png" border="0" alt=" photo timeset-gui-2.png" width=270 height=305/></a>
 
 #Links-
 
