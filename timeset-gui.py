@@ -224,7 +224,7 @@ class MainWindow(Gtk.Window):
                 out, err = sp.communicate()
             else:
                 #sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/posix/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                if os.path.exists('/usr/share/zoneinfo/posix/{0}'):
+                if os.path.isfile('/usr/share/zoneinfo/posix/{0}'.format(entered_text)):
                     sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/posix/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
