@@ -7,7 +7,8 @@ import os.path
 #program_icon = "/usr/share/icons/timeset-gui-icon.png"
 
 def is_systemd():
-    if os.path.exists('/usr/bin/timedatectl') and subprocess.call(["pidof", "systemd"]):
+    if os.path.exists('/usr/bin/timedatectl') and not subprocess.call(["pidof", "systemd"]):
+        # not subprocess.call used as it returns 0 on success
         return 1
     else:
         return 0
