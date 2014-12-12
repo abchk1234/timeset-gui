@@ -186,8 +186,7 @@ class MainWindow(Gtk.Window):
                     dialog2.run()
                     dialog2.destroy()
                 else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set")
-                    dialog2.format_secondary_text("Hardware clock set to UTC!")
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
                     dialog2.run()
                     dialog2.destroy()
             elif is_openrc():
@@ -201,8 +200,7 @@ class MainWindow(Gtk.Window):
                     dialog2.run()
                     dialog2.destroy()
                 else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set")
-                    dialog2.format_secondary_text("Hardware clock set to UTC!")
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
                     dialog2.run()
                     dialog2.destroy()
         if response == Gtk.ResponseType.CANCEL:
@@ -215,8 +213,7 @@ class MainWindow(Gtk.Window):
                     dialog2.run()
                     dialog2.destroy()
                 else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set")
-                    dialog2.format_secondary_text("Hardware clock set to local time!")
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to local time!")
                     dialog2.run()
                     dialog2.destroy()
             elif is_openrc():
@@ -230,8 +227,7 @@ class MainWindow(Gtk.Window):
                     dialog2.run()
                     dialog2.destroy()
                 else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set")
-                    dialog2.format_secondary_text("Hardware clock set to local time!")
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to local time!")
                     dialog2.run()
                     dialog2.destroy()
         dialog.destroy()
@@ -240,11 +236,65 @@ class MainWindow(Gtk.Window):
         dialog = set_ntp_at_statup(self)
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
-            sp = subprocess.Popen(shlex.split('timedatectl set-ntp 1'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            out, err = sp.communicate()
+            if is_systemd():
+                sp = subprocess.Popen(shlex.split('timedatectl set-ntp 1'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                out, err = sp.communicate()
+                if err:
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                    dialog2.format_secondary_text("{0}".format(err))
+                    dialog2.run()
+                    dialog2.destroy()
+                else:
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP enabled!")
+                    dialog2.run()
+                    dialog2.destroy()
+            elif is_openrc():
+                if subprocess.call(["pacman", "-Qs", "ntp-openrc"]):
+                    # package not present as subprocess returns 1 if not found
+                    err = 'ntpd service not found'
+                else:
+                    sp = subprocess.Popen(shlex.split('rc-update add ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    out, err = sp.communicate()
+                if err:
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                    dialog2.format_secondary_text("{0}".format(err))
+                    dialog2.run()
+                    dialog2.destroy()
+                else:
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP enabled!")
+                    dialog2.format_secondary_text("{0}".format(out))
+                    dialog2.run()
+                    dialog2.destroy()
         if response == Gtk.ResponseType.CANCEL:
-            sp = subprocess.Popen(shlex.split('timedatectl set-ntp 0'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            out, err = sp.communicate()
+            if is_systemd():
+                sp = subprocess.Popen(shlex.split('timedatectl set-ntp 0'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                out, err = sp.communicate()
+                if err:
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                    dialog2.format_secondary_text("{0}".format(err))
+                    dialog2.run()
+                    dialog2.destroy()
+                else:
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP disabled!")
+                    dialog2.run()
+                    dialog2.destroy()
+            elif is_openrc():
+                if subprocess.call(["pacman", "-Qs", "ntp-openrc"]):
+                    # package not present as subprocess returns 1 if not found
+                    err = 'ntpd service not found'
+                else:
+                    sp = subprocess.Popen(shlex.split('rc-update del ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    out, err = sp.communicate()
+                if err:
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                    dialog2.format_secondary_text("{0}".format(err))
+                    dialog2.run()
+                    dialog2.destroy()
+                else:
+                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP disabled!")
+                    dialog2.format_secondary_text("{0}".format(out))
+                    dialog2.run()
+                    dialog2.destroy()
         dialog.destroy()
 
     def on_sync_from_network(self, widget):
