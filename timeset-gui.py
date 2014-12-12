@@ -289,6 +289,11 @@ class MainWindow(Gtk.Window):
                     dialog2.format_secondary_text("{0}".format(out))
                     dialog2.run()
                     dialog2.destroy()
+            else:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                dialog2.format_secondary_text("For this to work the ntpd needs to be present.')\n'Furthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.')\n'This feature is not handled by this program.'")
+                dialog2.run()
+                dialog2.destroy()
         if response == Gtk.ResponseType.CANCEL:
             if is_systemd():
                 sp = subprocess.Popen(shlex.split('timedatectl set-ntp 0'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -319,6 +324,11 @@ class MainWindow(Gtk.Window):
                     dialog2.format_secondary_text("{0}".format(out))
                     dialog2.run()
                     dialog2.destroy()
+            else:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                dialog2.format_secondary_text("For this to work the ntpd needs to be present.')\n'Furthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.')\n'This feature is not handled by this program.'")
+                dialog2.run()
+                dialog2.destroy()
         dialog.destroy()
 
     def on_sync_from_network(self, widget):
