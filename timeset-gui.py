@@ -203,6 +203,18 @@ class MainWindow(Gtk.Window):
                     dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
                     dialog2.run()
                     dialog2.destroy()
+            else:
+                    sp = subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    out, err = sp.communicate()
+                    if err:
+                        dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                        dialog2.format_secondary_text("{0}".format(err))
+                        dialog2.run()
+                        dialog2.destroy()
+                    else:
+                        dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
+                        dialog2.run()
+                        dialog2.destroy()
         if response == Gtk.ResponseType.CANCEL:
             if is_systemd():
                 sp = subprocess.Popen(shlex.split('timedatectl set-local-rtc 1'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -230,6 +242,18 @@ class MainWindow(Gtk.Window):
                     dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to local time!")
                     dialog2.run()
                     dialog2.destroy()
+            else:
+                    sp = subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    out, err = sp.communicate()
+                    if err:
+                        dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                        dialog2.format_secondary_text("{0}".format(err))
+                        dialog2.run()
+                        dialog2.destroy()
+                    else:
+                        dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
+                        dialog2.run()
+                        dialog2.destroy()
         dialog.destroy()
 
     def on_set_ntp_at_statup(self, widget):
