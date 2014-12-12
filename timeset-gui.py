@@ -2,8 +2,15 @@
 import shlex
 import subprocess
 from gi.repository import Gtk
+import os.path
 
-program_icon = "/usr/share/icons/timeset-gui-icon.png"
+#program_icon = "/usr/share/icons/timeset-gui-icon.png"
+
+def is_systemd():
+    if os.path.exists('/usr/bin/timedatectl') and subprocess.call(["pidof", "systemd"]):
+        return 1
+    else:
+        return 0
 
 class on_read_time_from_hw_clock:
     def __init__(self):
@@ -32,7 +39,10 @@ class on_show_current_date_and_time:
         viewbox.set_border_width(10)
         window2.add(viewbox)
         textbuffer = viewbox.get_buffer()
-        sp = subprocess.Popen(shlex.split('timedatectl status'), stdout=subprocess.PIPE)
+        if is_systemd():
+            sp = subprocess.Popen(shlex.split('timedatectl status'), stdout=subprocess.PIPE)
+        else:
+            sp = subprocess.Popen(shlex.split('date'), stdout=subprocess.PIPE)
         out, err = sp.communicate()
         textbuffer.set_text("{0}".format(out))
         window2.connect("destroy", lambda q: Gtk.main_quit())
@@ -54,7 +64,10 @@ class on_show_timezones:
         viewbox.set_border_width(10)
         scrolledwindow.add(viewbox)
         textbuffer = viewbox.get_buffer()
-        sp = subprocess.Popen(shlex.split('timedatectl list-timezones'), stdout=subprocess.PIPE)
+        if is_systemd():
+            sp = subprocess.Popen(shlex.split('timedatectl list-timezones'), stdout=subprocess.PIPE)
+        else:
+            sp = subprocess.Popen(shlex.split('find /usr/share/zoneinfo/posix -mindepth 2 -type f -printf "%P\n"'), stdout=subprocess.PIPE)
         out, err = sp.communicate()
         textbuffer.set_text("{0}".format(out))
 
@@ -206,8 +219,18 @@ class MainWindow(Gtk.Window):
         response = dialog.run()
         entered_text = dialog.entry.get_text()
         if response == Gtk.ResponseType.OK:
-            sp = subprocess.Popen(shlex.split("timedatectl set-timezone {0}".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            out, err = sp.communicate()
+            if is_systemd():
+                sp = subprocess.Popen(shlex.split("timedatectl set-timezone {0}".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                out, err = sp.communicate()
+            else:
+                #sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/posix/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                if os.path.exists('/usr/share/zoneinfo/posix/{0}'):
+                    sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/posix/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    out, err = sp.communicate()
+                else:
+                    #out = ''
+                    err = 'Invalid Timezone'
+
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK, "Warning!")
@@ -247,7 +270,7 @@ class MainWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="TimeSet - Manage system date and time")
 
-        self.set_icon_from_file(program_icon)
+        #self.set_icon_from_file(program_icon)
         self.set_border_width(6)
         self.set_size_request(280, 300)
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=1)
