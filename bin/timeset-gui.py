@@ -277,8 +277,11 @@ class MainWindow(Gtk.Window):
         dialog.destroy()
 
     def on_sync_from_network(self, widget):
-        sp = subprocess.Popen(shlex.split("ntpdate -u 0.pool.ntp.org"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        out, err = sp.communicate()
+        if os.path.exists('/usr/bin/ntpdate'):
+            sp = subprocess.Popen(shlex.split("ntpdate -u 0.pool.ntp.org"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            out, err = sp.communicate()
+        else:
+            err = 'Could not find ntpdate'
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                 Gtk.ButtonsType.OK, "Warning!")
