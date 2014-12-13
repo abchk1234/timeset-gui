@@ -283,10 +283,8 @@ class MainWindow(Gtk.Window):
         else:
             err = 'Could not find ntpdate'
         if err:
-            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
-                Gtk.ButtonsType.OK, "Warning!")
-            dialog2.format_secondary_text(
-                "Cannot synchronize from the network right now.\nMake sure that you are running this program as root and try again.")
+            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, "Warning!")
+            dialog2.format_secondary_text("{0}".format(err))
             dialog2.run()
             dialog2.destroy()
         else:
