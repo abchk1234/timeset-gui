@@ -6,11 +6,7 @@ gksu (for becoming root when running the application from system menu)
 
 ntp (for synchronising time from the network)
 
-python2
-
 python2-gobject
-
-systemd
 
 #Installation-
 
