@@ -228,70 +228,44 @@ class MainWindow(Gtk.Window):
             if is_systemd():
                 sp = subprocess.Popen(shlex.split('timedatectl set-ntp 1'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 out, err = sp.communicate()
-                if err:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                    dialog2.format_secondary_text("{0}".format(err))
-                    dialog2.run()
-                    dialog2.destroy()
-                else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP enabled!")
-                    dialog2.run()
-                    dialog2.destroy()
             elif is_openrc():
-                if subprocess.call(["pacman", "-Qs", "ntp-openrc"]):
-                    # package not present as subprocess returns 1 if not found
-                    err = 'ntpd service not found'
-                else:
+                if os.path.isfile('/etc/init.d/ntpd'):
                     sp = subprocess.Popen(shlex.split('rc-update add ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
-                if err:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                    dialog2.format_secondary_text("{0}".format(err))
-                    dialog2.run()
-                    dialog2.destroy()
                 else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP enabled!")
-                    dialog2.format_secondary_text("{0}".format(out))
-                    dialog2.run()
-                    dialog2.destroy()
+                    err = 'ntpd service not found'
             else:
+                err = 'For this to work the ntpd needs to be present.\nFurthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.'
+            if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                dialog2.format_secondary_text("For this to work the ntpd needs to be present.')\n'Furthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.')\n'This feature is not handled by this program.'")
+                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.run()
+                dialog2.destroy()
+            else:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP enabled!")
+                dialog2.format_secondary_text("{0}".format(out))
                 dialog2.run()
                 dialog2.destroy()
         if response == Gtk.ResponseType.CANCEL:
             if is_systemd():
                 sp = subprocess.Popen(shlex.split('timedatectl set-ntp 0'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 out, err = sp.communicate()
-                if err:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                    dialog2.format_secondary_text("{0}".format(err))
-                    dialog2.run()
-                    dialog2.destroy()
-                else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP disabled!")
-                    dialog2.run()
-                    dialog2.destroy()
             elif is_openrc():
-                if subprocess.call(["pacman", "-Qs", "ntp-openrc"]):
-                    # package not present as subprocess returns 1 if not found
-                    err = 'ntpd service not found'
-                else:
+                if os.path.isfile('/etc/init.d/ntpd'):
                     sp = subprocess.Popen(shlex.split('rc-update del ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
-                if err:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                    dialog2.format_secondary_text("{0}".format(err))
-                    dialog2.run()
-                    dialog2.destroy()
                 else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP disabled!")
-                    dialog2.format_secondary_text("{0}".format(out))
-                    dialog2.run()
-                    dialog2.destroy()
+                    err = 'ntpd service not found'
             else:
+                err = 'For this to work the ntpd needs to be present.\nFurthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.'
+            if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                dialog2.format_secondary_text("For this to work the ntpd needs to be present.')\n'Furthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.')\n'This feature is not handled by this program.'")
+                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.run()
+                dialog2.destroy()
+            else:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP disabled!")
+                dialog2.format_secondary_text("{0}".format(out))
                 dialog2.run()
                 dialog2.destroy()
         dialog.destroy()
