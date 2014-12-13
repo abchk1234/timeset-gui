@@ -242,7 +242,7 @@ class MainWindow(Gtk.Window):
                 else:
                     err = 'ntpd service not found'
             else:
-                err = 'For this to work the ntpd needs to be present.\nFurthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.'
+                err = 'For this to work ntpd needs to be present.\nFurthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.'
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
                 dialog2.format_secondary_text("{0}".format(err))
