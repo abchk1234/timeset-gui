@@ -75,7 +75,8 @@ class on_show_timezones:
         if is_systemd():
             sp = subprocess.Popen(shlex.split('timedatectl list-timezones'), stdout=subprocess.PIPE)
         else:
-            sp = subprocess.Popen(shlex.split('find /usr/share/zoneinfo/posix -mindepth 2 -type f -printf "%P\n"'), stdout=subprocess.PIPE)
+            p1 = subprocess.Popen(shlex.split('find /usr/share/zoneinfo/posix -mindepth 2 -type f -printf "%P\n"'), stdout=subprocess.PIPE)
+            sp = subprocess.Popen(["sort"], stdin=p1.stdout, stdout=subprocess.PIPE)
         out, err = sp.communicate()
         textbuffer.set_text("{0}".format(out))
 
