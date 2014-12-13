@@ -3,6 +3,7 @@ import shlex
 import subprocess
 from gi.repository import Gtk
 import os.path
+import re
 
 #program_icon = "/usr/share/icons/timeset-gui-icon.png"
 
@@ -180,80 +181,44 @@ class MainWindow(Gtk.Window):
             if is_systemd():
                 sp = subprocess.Popen(shlex.split('timedatectl set-local-rtc 0'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 out, err = sp.communicate()
-                if err:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                    dialog2.format_secondary_text("{0}".format(err))
-                    dialog2.run()
-                    dialog2.destroy()
-                else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
-                    dialog2.run()
-                    dialog2.destroy()
             elif is_openrc():
                 if os.path.isfile('/etc/conf.d/hwclock'):
                     sp = subprocess.Popen(shlex.split('sed -i "s/clock=.*/clock=\"UTC\"/" /etc/conf.d/hwclock'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                     subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                if err:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                    dialog2.format_secondary_text("{0}".format(err))
-                    dialog2.run()
-                    dialog2.destroy()
-                else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
-                    dialog2.run()
-                    dialog2.destroy()
             else:
                     sp = subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
-                    if err:
-                        dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                        dialog2.format_secondary_text("{0}".format(err))
-                        dialog2.run()
-                        dialog2.destroy()
-                    else:
-                        dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
-                        dialog2.run()
-                        dialog2.destroy()
+            if err:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.run()
+                dialog2.destroy()
+            else:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
+                dialog2.run()
+                dialog2.destroy()
         if response == Gtk.ResponseType.CANCEL:
             if is_systemd():
                 sp = subprocess.Popen(shlex.split('timedatectl set-local-rtc 1'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 out, err = sp.communicate()
-                if err:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                    dialog2.format_secondary_text("{0}".format(err))
-                    dialog2.run()
-                    dialog2.destroy()
-                else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to local time!")
-                    dialog2.run()
-                    dialog2.destroy()
             elif is_openrc():
                 if os.path.isfile('/etc/conf.d/hwclock'):
                     sp = subprocess.Popen(shlex.split('sed -i "s/clock=.*/clock=\"local\"/" /etc/conf.d/hwclock'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                     subprocess.Popen(shlex.split('hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                if err:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                    dialog2.format_secondary_text("{0}".format(err))
-                    dialog2.run()
-                    dialog2.destroy()
-                else:
-                    dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to local time!")
-                    dialog2.run()
-                    dialog2.destroy()
             else:
-                    sp = subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    sp = subprocess.Popen(shlex.split('hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
-                    if err:
-                        dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
-                        dialog2.format_secondary_text("{0}".format(err))
-                        dialog2.run()
-                        dialog2.destroy()
-                    else:
-                        dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
-                        dialog2.run()
-                        dialog2.destroy()
+            if err:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.run()
+                dialog2.destroy()
+            else:
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to local time!")
+                dialog2.run()
+                dialog2.destroy()
         dialog.destroy()
 
     def on_set_ntp_at_statup(self, widget):
@@ -393,8 +358,18 @@ class MainWindow(Gtk.Window):
         response = dialog.run()
         entered_text = dialog.entry.get_text()
         if response == Gtk.ResponseType.OK:
-            sp = subprocess.Popen(shlex.split("timedatectl set-time {0}".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            out, err = sp.communicate()
+            if is_systemd():
+                sp = subprocess.Popen(shlex.split("timedatectl set-time {0}".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                out, err = sp.communicate()
+            else:
+                p1 = re.match("[0-9]*:[0-9]*", "{0}".format(entered_text))
+                p2 = re.match("[0-9]*-[0-9]*-[0-9]* [0-9]*:[0-9]*", "{0}".format(entered_text))
+                p3 = re.match("[0-9]*-[0-9]*-[0-9]* [0-9]*:[0-9]*:[0-9]*", "{0}".format(entered_text))
+		if p1 or p2 or p3:
+                    sp = subprocess.Popen(shlex.split("date -s {0}".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    out, err = sp.communicate()
+                else:
+                    err = 'Date not entered correctly'
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK, "Warning!")
