@@ -5,7 +5,7 @@ from gi.repository import Gtk
 import os.path
 import re
 
-#program_icon = "/usr/share/icons/timeset-gui-icon.png"
+program_icon = "/usr/share/icons/timeset-gui-icon.png"
 
 def is_systemd():
     if os.path.exists('/usr/bin/timedatectl') and not subprocess.call(["pidof", "systemd"]):
@@ -368,7 +368,9 @@ class MainWindow(Gtk.Window):
     def __init__(self):
         Gtk.Window.__init__(self, title="TimeSet - Manage system date and time")
 
-        #self.set_icon_from_file(program_icon)
+        if os.path.isfile(program_icon):
+            self.set_icon_from_file(program_icon)
+
         self.set_border_width(6)
         self.set_size_request(280, 300)
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=1)
