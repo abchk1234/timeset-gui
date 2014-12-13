@@ -22,7 +22,7 @@ install: all
 	$(INSTALL) -d $(DESTDIR)$(docdir)
 	$(INSTALL) -d $(DESTDIR)$(appdir)
 	$(INSTALL) -m755 bin/timeset-gui.py $(DESTDIR)$(bindir)/timeset-gui
-	$(INSTALL) -m644 install/time-admin.png $(DESTDIR)$(icons)
+	$(INSTALL) -m644 install/time-admin.png $(DESTDIR)$(icons)/timeset-gui-icon.png
 	$(INSTALL) -m644 install/time-settings.desktop $(DESTDIR)$(deskdir)
 	$(INSTALL) -m644 README.md $(DESTDIR)$(docdir)
 	$(INSTALL) -m644 COPYING $(DESTDIR)$(docdir)
