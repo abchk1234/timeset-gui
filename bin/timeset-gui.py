@@ -277,7 +277,7 @@ class MainWindow(Gtk.Window):
         dialog.destroy()
 
     def on_sync_from_network(self, widget):
-        if os.path.exists('/usr/bin/ntpdate'):
+        if os.path.exists('/usr/sbin/ntpdate'):
             sp = subprocess.Popen(shlex.split("ntpdate -u 0.pool.ntp.org"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = sp.communicate()
         else:
