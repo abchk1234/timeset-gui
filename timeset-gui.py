@@ -305,14 +305,11 @@ class MainWindow(Gtk.Window):
                 sp = subprocess.Popen(shlex.split("timedatectl set-timezone {0}".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 out, err = sp.communicate()
             else:
-                #sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/posix/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 if os.path.isfile('/usr/share/zoneinfo/posix/{0}'.format(entered_text)):
                     sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/posix/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    #out = ''
                     err = 'Invalid Timezone'
-
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK, "Warning!")
@@ -333,17 +330,18 @@ class MainWindow(Gtk.Window):
         entered_text = dialog.entry.get_text()
         if response == Gtk.ResponseType.OK:
             if is_systemd():
-                sp = subprocess.Popen(shlex.split("timedatectl set-time {0}".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                sp = subprocess.Popen(shlex.split("timedatectl set-time '%s'" % entered_text), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 out, err = sp.communicate()
             else:
-                p1 = re.match("[0-9]*:[0-9]*", "{0}".format(entered_text))
-                p2 = re.match("[0-9]*-[0-9]*-[0-9]* [0-9]*:[0-9]*", "{0}".format(entered_text))
-                p3 = re.match("[0-9]*-[0-9]*-[0-9]* [0-9]*:[0-9]*:[0-9]*", "{0}".format(entered_text))
-		if p1 or p2 or p3:
-                    sp = subprocess.Popen(shlex.split("date -s {0}".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                p1 = re.match("[0-9]*:[0-9]*", "%s" % entered_text) # time, like hh:mm
+                p2 = re.match("[0-9]*-[0-9]*-[0-9]*", "%s" % entered_text) # date, like yyyy-mm-dd
+                p3 = re.match("[0-9]*-[0-9]*-[0-9]* [0-9]*:[0-9]*", "%s" % entered_text) # date and time
+                p4 = re.match("[0-9]*-[0-9]*-[0-9]* [0-9]*:[0-9]*:[0-9]*", "%s" % entered_text) # date and time with seconds
+		if p1 or p2 or p3 or p4:
+                    sp = subprocess.Popen(shlex.split("date -s '%s'" % entered_text), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    err = 'Date not entered correctly'
+                    err = 'Time not entered correctly.'
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
                     Gtk.ButtonsType.OK, "Warning!")
