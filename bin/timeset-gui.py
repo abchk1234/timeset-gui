@@ -30,7 +30,7 @@ class on_read_time_from_hw_clock:
         viewbox.set_border_width(10)
         window2.add(viewbox)
         textbuffer = viewbox.get_buffer()
-        sp = subprocess.Popen(shlex.split('hwclock -D'), stdout=subprocess.PIPE)
+        sp = subprocess.Popen(shlex.split('/sbin/hwclock -D'), stdout=subprocess.PIPE)
         out, err = sp.communicate()
         textbuffer.set_text("{0}".format(out))
         window2.connect("destroy", lambda q: Gtk.main_quit())
@@ -141,7 +141,7 @@ class set_time_manually(Gtk.Dialog):
 class MainWindow(Gtk.Window):
 
     def on_sync_system_time_from_hw_clock(self, widget):
-        sp = subprocess.Popen(shlex.split("hwclock -s"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        sp = subprocess.Popen(shlex.split("/sbin/hwclock -s"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = sp.communicate()
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
@@ -157,7 +157,7 @@ class MainWindow(Gtk.Window):
             dialog2.destroy()
 
     def on_sync_hw_clock_to_system_time(self, widget):
-        sp = subprocess.Popen(shlex.split("hwclock -w"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        sp = subprocess.Popen(shlex.split("/sbin/hwclock -w"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = sp.communicate()
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
@@ -185,12 +185,12 @@ class MainWindow(Gtk.Window):
                 if os.path.isfile('/etc/conf.d/hwclock'):
                     sp = subprocess.Popen(shlex.split('sed -i "s/clock=.*/clock=\"UTC\"/" /etc/conf.d/hwclock'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
-                    subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    subprocess.Popen(shlex.split('/sbin/hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 else:
-                    sp = subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    sp = subprocess.Popen(shlex.split('/sbin/hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
             else:
-                    sp = subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    sp = subprocess.Popen(shlex.split('/sbin/hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
@@ -209,12 +209,12 @@ class MainWindow(Gtk.Window):
                 if os.path.isfile('/etc/conf.d/hwclock'):
                     sp = subprocess.Popen(shlex.split('sed -i "s/clock=.*/clock=\"local\"/" /etc/conf.d/hwclock'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
-                    subprocess.Popen(shlex.split('hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    subprocess.Popen(shlex.split('/sbin/hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 else:
-                    sp = subprocess.Popen(shlex.split('hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    sp = subprocess.Popen(shlex.split('/sbin/hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
             else:
-                    sp = subprocess.Popen(shlex.split('hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    sp = subprocess.Popen(shlex.split('/sbin/hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
