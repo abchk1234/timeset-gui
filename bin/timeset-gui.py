@@ -186,6 +186,9 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split('sed -i "s/clock=.*/clock=\"UTC\"/" /etc/conf.d/hwclock'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                     subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                else:
+                    sp = subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    out, err = sp.communicate()
             else:
                     sp = subprocess.Popen(shlex.split('hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
@@ -207,6 +210,9 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split('sed -i "s/clock=.*/clock=\"local\"/" /etc/conf.d/hwclock'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                     subprocess.Popen(shlex.split('hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                else:
+                    sp = subprocess.Popen(shlex.split('hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                    out, err = sp.communicate()
             else:
                     sp = subprocess.Popen(shlex.split('hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
