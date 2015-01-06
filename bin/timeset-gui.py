@@ -145,10 +145,8 @@ class MainWindow(Gtk.Window):
         sp = subprocess.Popen(shlex.split("/sbin/hwclock -s"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = sp.communicate()
         if err:
-            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
-                Gtk.ButtonsType.OK, "Warning!")
-            dialog2.format_secondary_text(
-                "{0}".format(err))
+            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, "Warning!")
+            dialog2.format_secondary_text("{0}".format(err))
             dialog2.run()
             dialog2.destroy()
         else:
