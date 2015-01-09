@@ -453,7 +453,7 @@ class MainWindow(Gtk.Window):
         self.button_7.connect("clicked", self.read_time_from_hw_clock)
         grid.attach(self.button_7, Gtk.PositionType.RIGHT, 7, 1, 1)
 
-        label = Gtk.Label(label=_(" 8. Sync hardware clock to system time"))
+        label = Gtk.Label(label=_(" 8. Synchronize hardware clock to system time"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 8, 1, 1)
         self.button_8 = Gtk.ToolButton(stock_id=Gtk.STOCK_APPLY)
@@ -461,7 +461,7 @@ class MainWindow(Gtk.Window):
         self.button_8.connect("clicked", self.on_sync_hw_clock_to_system_time)
         grid.attach(self.button_8, Gtk.PositionType.RIGHT, 8, 1, 1)
 
-        label = Gtk.Label(label=_(" 9. Sync system time to hardware clock"))
+        label = Gtk.Label(label=_(" 9. Synchronize system time to hardware clock"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 9, 1, 1)
         self.button_9 = Gtk.ToolButton(stock_id=Gtk.STOCK_APPLY)
