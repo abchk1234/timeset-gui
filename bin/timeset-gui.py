@@ -76,9 +76,7 @@ class on_show_timezones:
 class set_timezone(Gtk.Dialog):
     def __init__(self, parent):
         Gtk.Dialog.__init__(self, _("Set system timezone"), parent,
-            Gtk.DialogFlags.MODAL, buttons=(
-            Gtk.STOCK_OK, Gtk.ResponseType.OK,
-            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
+            Gtk.DialogFlags.MODAL, buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK, Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
         label = Gtk.Label(_('Enter the timezone. It should be like \nContinent/City - Europe/Berlin'))
         box.add(label)
@@ -107,7 +105,7 @@ class control_the_hw_clock(Gtk.Dialog):
 class on_read_time_from_hw_clock:
     def __init__(self):
         window2 = Gtk.Window()
-        window2.set_title(_("Hardware Clock Time"))
+        window2.set_title(_("Hardware clock time"))
         viewbox = Gtk.TextView()
         viewbox.set_property('editable', False)
         viewbox.set_cursor_visible(False)
@@ -373,7 +371,7 @@ class MainWindow(Gtk.Window):
         grid.set_column_spacing(1)
         vbox.add(grid)
 
-        label = Gtk.Label(label=_("1. Show current date and time configuration"))
+        label = Gtk.Label(label=_("1. Show current date and time"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 1, 1, 1)
         self.button_1 = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_INFO)
@@ -405,11 +403,11 @@ class MainWindow(Gtk.Window):
         self.button_4.connect("clicked", self.on_sync_from_network)
         grid.attach(self.button_4, Gtk.PositionType.RIGHT, 4, 1, 1)
 
-        label = Gtk.Label(label=_("5. Choose whether NTP is enabled or not"))
+        label = Gtk.Label(label=_("5. Choose whether NTP is enabled"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 5, 1, 1)
         self.button_5 = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_QUESTION)
-        self.button_5.set_tooltip_text(_("Choose whether NTP (Network Time Protocol) is enabled or not"))
+        self.button_5.set_tooltip_text(_("Choose whether NTP (Network Time Protocol) is enabled"))
         self.button_5.connect("clicked", self.on_set_ntp_at_statup)
         grid.attach(self.button_5, Gtk.PositionType.RIGHT, 5, 1, 1)
 
@@ -418,14 +416,14 @@ class MainWindow(Gtk.Window):
         grid.attach(label, Gtk.PositionType.LEFT, 6, 1, 1)
         self.button_6 = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_QUESTION)
         self.button_6.connect("clicked", self.on_control_the_hw_clock)
-        self.button_6.set_tooltip_text(_("Control whether the hardware clock is in local time or not"))
+        self.button_6.set_tooltip_text(_("Control whether the hardware clock is in UTC or local time"))
         grid.attach(self.button_6, Gtk.PositionType.RIGHT, 6, 1, 1)
 
         label = Gtk.Label(label=_("7. Read time from the H/W clock"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 7, 1, 1)
         self.button_7 = Gtk.ToolButton(stock_id=Gtk.STOCK_ABOUT)
-        self.button_7.set_tooltip_text(_("Read the time from the Hardware Clock"))
+        self.button_7.set_tooltip_text(_("Read time from the hardware clock"))
         self.button_7.connect("clicked", self.read_time_from_hw_clock)
         grid.attach(self.button_7, Gtk.PositionType.RIGHT, 7, 1, 1)
 
@@ -433,15 +431,15 @@ class MainWindow(Gtk.Window):
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 8, 1, 1)
         self.button_8 = Gtk.ToolButton(stock_id=Gtk.STOCK_APPLY)
-        self.button_8.set_tooltip_text(_("Synchronize the hardware clock to system time"))
+        self.button_8.set_tooltip_text(_("Synchronize hardware clock to system time"))
         self.button_8.connect("clicked", self.on_sync_hw_clock_to_system_time)
         grid.attach(self.button_8, Gtk.PositionType.RIGHT, 8, 1, 1)
 
-        label = Gtk.Label(label=_("9. Synchronize system time to H/W clock time"))
+        label = Gtk.Label(label=_("9. Synchronize system time to H/W clock"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 9, 1, 1)
         self.button_9 = Gtk.ToolButton(stock_id=Gtk.STOCK_APPLY)
-        self.button_9.set_tooltip_text(_("Synchronize system time to the hardware clock time"))
+        self.button_9.set_tooltip_text(_("Synchronize system time to hardware clock time"))
         self.button_9.connect("clicked", self.on_sync_system_time_from_hw_clock)
         grid.attach(self.button_9, Gtk.PositionType.RIGHT, 9, 1, 1)
 
