@@ -4,8 +4,14 @@ import subprocess
 from gi.repository import Gtk
 import os.path
 import re
+import gettext
 
 program_icon = "/usr/share/icons/timeset-gui-icon.png"
+
+# For translation
+_ = gettext.gettext
+
+msg_warn = _('Warning!')
 
 def is_systemd():
     if os.path.exists('/usr/bin/timedatectl') and not subprocess.call(["pidof", "systemd"]):
@@ -20,27 +26,10 @@ def is_openrc():
     else:
         return 0
 
-class on_read_time_from_hw_clock:
-    def __init__(self):
-        window2 = Gtk.Window()
-        window2.set_title("Hardware Clock Time")
-        viewbox = Gtk.TextView()
-        viewbox.set_property('editable', False)
-        viewbox.set_cursor_visible(False)
-        viewbox.set_border_width(10)
-        window2.add(viewbox)
-        textbuffer = viewbox.get_buffer()
-        sp = subprocess.Popen(shlex.split('/sbin/hwclock -D'), stdout=subprocess.PIPE)
-        out, err = sp.communicate()
-        textbuffer.set_text("{0}".format(out))
-        window2.connect("destroy", lambda q: Gtk.main_quit())
-        window2.show_all()
-        Gtk.main()
-
 class on_show_current_date_and_time:
     def __init__(self):
         window2 = Gtk.Window()
-        window2.set_title("Current date and time")
+        window2.set_title(_("Current date and time"))
         viewbox = Gtk.TextView()
         viewbox.set_property('editable', False)
         viewbox.set_cursor_visible(False)
@@ -61,7 +50,7 @@ class on_show_timezones:
     def __init__(self):
         window2 = Gtk.Window()
         window2.set_default_size(300, 400)
-        window2.set_title("Known timezones")
+        window2.set_title(_("Known timezones"))
         scrolledwindow = Gtk.ScrolledWindow()
         scrolledwindow.set_hexpand(True)
         scrolledwindow.set_vexpand(True)
@@ -84,68 +73,80 @@ class on_show_timezones:
         window2.show_all()
         Gtk.main()
 
-class sync_system_time_from_hw_clock(Gtk.Dialog):
-    def __init__(self, parent):
-        Gtk.Dialog.__init__(self, "Sync system time from H/W clock", parent,
-            Gtk.DialogFlags.MODAL, buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK))
-        box = self.get_content_area()
-        label = Gtk.Label('Synchronize system time from the hardware clock.\nClick OK and wait a few moments while the time is being synchronised.\n')
-        box.add(label)
-        self.show_all()
-
-class control_the_hw_clock(Gtk.Dialog):
-    def __init__(self, parent):
-        Gtk.Dialog.__init__(self, "Control the H/W clock", parent,
-            Gtk.DialogFlags.MODAL, buttons=("UTC", Gtk.ResponseType.OK, "Local Time", Gtk.ResponseType.CANCEL))
-        box = self.get_content_area()
-        label = Gtk.Label('Set the hardware clock to use - \n')
-        box.add(label)
-        self.show_all()
-
-class set_ntp_at_statup(Gtk.Dialog):
-    def __init__(self, parent):
-        Gtk.Dialog.__init__(self, "Enable or disable NTP", parent,
-            Gtk.DialogFlags.MODAL, buttons=("Enable", Gtk.ResponseType.OK, "Disable", Gtk.ResponseType.CANCEL))
-        box = self.get_content_area()
-        label = Gtk.Label('Enable or disable NTP usage.\nNTP stands for Network Time Protocol.\nIf NTP is enabled the system will periodically\nsynchronize time from the network.')
-        box.add(label)
-        self.show_all()
-
 class set_timezone(Gtk.Dialog):
-
     def __init__(self, parent):
-        Gtk.Dialog.__init__(self, "Set timezone", parent,
+        Gtk.Dialog.__init__(self, _("Set system timezone"), parent,
             Gtk.DialogFlags.MODAL, buttons=(
             Gtk.STOCK_OK, Gtk.ResponseType.OK,
             Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
-        label = Gtk.Label('Enter the timezone. It should be like \nContinent/City - Europe/Berlin')
+        label = Gtk.Label(_('Enter the timezone. It should be like \nContinent/City - Europe/Berlin'))
         box.add(label)
         self.entry = Gtk.Entry()
         box.add(self.entry)
         self.show_all()
 
-class set_time_manually(Gtk.Dialog):
-
+class set_ntp_at_statup(Gtk.Dialog):
     def __init__(self, parent):
-        Gtk.Dialog.__init__(self, "Set time", parent,
-            Gtk.DialogFlags.MODAL, buttons=(
-            Gtk.STOCK_OK, Gtk.ResponseType.OK,
-            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
+        Gtk.Dialog.__init__(self, _("Enable or disable NTP"), parent,
+            Gtk.DialogFlags.MODAL, buttons=(_("Enable"), Gtk.ResponseType.OK, _("Disable"), Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
-        label = Gtk.Label('Enter the time. The time may be formatted\nlike this: 2013-11-18 09:12:45\nor use just "hh:mm"')
+        label = Gtk.Label(_('Enable or disable NTP usage.\nNTP stands for Network Time Protocol.\nIf NTP is enabled the system will periodically\nsynchronize time from the network.'))
+        box.add(label)
+        self.show_all()
+
+class control_the_hw_clock(Gtk.Dialog):
+    def __init__(self, parent):
+        Gtk.Dialog.__init__(self, _("Control the H/W clock"), parent,
+            Gtk.DialogFlags.MODAL, buttons=(_("UTC"), Gtk.ResponseType.OK, _("Local Time"), Gtk.ResponseType.CANCEL))
+        box = self.get_content_area()
+        label = Gtk.Label(_('Set the hardware clock to use'))
+        box.add(label)
+        self.show_all()
+
+class on_read_time_from_hw_clock:
+    def __init__(self):
+        window2 = Gtk.Window()
+        window2.set_title(_("Hardware Clock Time"))
+        viewbox = Gtk.TextView()
+        viewbox.set_property('editable', False)
+        viewbox.set_cursor_visible(False)
+        viewbox.set_border_width(10)
+        window2.add(viewbox)
+        textbuffer = viewbox.get_buffer()
+        sp = subprocess.Popen(shlex.split('/sbin/hwclock -D'), stdout=subprocess.PIPE)
+        out, err = sp.communicate()
+        textbuffer.set_text("{0}".format(out))
+        window2.connect("destroy", lambda q: Gtk.main_quit())
+        window2.show_all()
+        Gtk.main()
+
+class sync_system_time_from_hw_clock(Gtk.Dialog):
+    def __init__(self, parent):
+        Gtk.Dialog.__init__(self, _("Sync system time from hardware clock"), parent,
+            Gtk.DialogFlags.MODAL, buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK))
+        box = self.get_content_area()
+        label = Gtk.Label(_('Synchronize system time from the hardware clock.\nClick OK and wait a few moments while the time is being synchronised.\n'))
+        box.add(label)
+        self.show_all()
+
+class set_time_manually(Gtk.Dialog):
+    def __init__(self, parent):
+        Gtk.Dialog.__init__(self, _("Set time"), parent,
+            Gtk.DialogFlags.MODAL, buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK, Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
+        box = self.get_content_area()
+        label = Gtk.Label(_('Enter the time. The time may be formatted\nlike this: 2013-11-18 09:12:45\nor use just "hh:mm"'))
         box.add(label)
         self.entry = Gtk.Entry()
         box.add(self.entry)
         self.show_all()
 
 class MainWindow(Gtk.Window):
-
     def on_sync_system_time_from_hw_clock(self, widget):
         sp = subprocess.Popen(shlex.split("/sbin/hwclock -s"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = sp.communicate()
         if err:
-            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, "Warning!")
+            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
             dialog2.format_secondary_text("{0}".format(err))
             dialog2.run()
             dialog2.destroy()
@@ -159,17 +160,14 @@ class MainWindow(Gtk.Window):
         sp = subprocess.Popen(shlex.split("/sbin/hwclock -w"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = sp.communicate()
         if err:
-            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
-                Gtk.ButtonsType.OK, "Warning!")
-            dialog2.format_secondary_text(
-                "{0}".format(err))
+            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
+            dialog2.format_secondary_text("{0}".format(err))
             dialog2.run()
             dialog2.destroy()
         else:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,
-                Gtk.ButtonsType.OK, "Hardware clock synchronized to system time!")
-            dialog2.format_secondary_text(
-                "{0}".format(out))
+                Gtk.ButtonsType.OK, _("Hardware clock synchronized to system time!"))
+            dialog2.format_secondary_text("{0}".format(out))
             dialog2.run()
             dialog2.destroy()
 
@@ -192,12 +190,12 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split('/sbin/hwclock --systohc --utc'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
             if err:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
                 dialog2.format_secondary_text("{0}".format(err))
                 dialog2.run()
                 dialog2.destroy()
             else:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to UTC!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, _("Hardware clock set to UTC!"))
                 dialog2.run()
                 dialog2.destroy()
         if response == Gtk.ResponseType.CANCEL:
@@ -216,12 +214,12 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split('/sbin/hwclock --systohc --localtime'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
             if err:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
                 dialog2.format_secondary_text("{0}".format(err))
                 dialog2.run()
                 dialog2.destroy()
             else:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "Hardware clock set to local time!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, _("Hardware clock set to local time!"))
                 dialog2.run()
                 dialog2.destroy()
         dialog.destroy()
@@ -238,16 +236,16 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split('rc-update add ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    err = 'ntpd service not found'
+                    err = _('ntpd service not found')
             else:
-                err = 'For this to work ntpd needs to be present.\nFurthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.'
+                err = _('For this to work ntpd needs to be present.\nFurthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.')
             if err:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
                 dialog2.format_secondary_text("{0}".format(err))
                 dialog2.run()
                 dialog2.destroy()
             else:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP enabled!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, _("NTP enabled!"))
                 dialog2.format_secondary_text("{0}".format(out))
                 dialog2.run()
                 dialog2.destroy()
@@ -260,16 +258,16 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split('rc-update del ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    err = 'ntpd service not found'
+                    err = _('ntpd service not found')
             else:
-                err = 'For this to work ntpd needs to be present.\nFurthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.'
+                err = _('For this to work ntpd needs to be present.\nFurthur you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.')
             if err:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, "Warning!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
                 dialog2.format_secondary_text("{0}".format(err))
                 dialog2.run()
                 dialog2.destroy()
             else:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, "NTP disabled!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, _("NTP disabled!"))
                 dialog2.format_secondary_text("{0}".format(out))
                 dialog2.run()
                 dialog2.destroy()
@@ -280,15 +278,15 @@ class MainWindow(Gtk.Window):
             sp = subprocess.Popen(shlex.split("/usr/sbin/ntpdate -u 0.pool.ntp.org"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = sp.communicate()
         else:
-            err = 'Could not find ntpdate'
+            err = _('Could not find ntpdate')
         if err:
-            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, "Warning!")
+            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
             dialog2.format_secondary_text("{0}".format(err))
             dialog2.run()
             dialog2.destroy()
         else:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,
-                Gtk.ButtonsType.OK, "Success! Time updated.")
+                Gtk.ButtonsType.OK, _("Success! Time updated."))
             dialog2.format_secondary_text("{0}".format(out))
             dialog2.run()
             dialog2.destroy()
@@ -315,16 +313,14 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/posix/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    err = 'Invalid Timezone'
+                    err = _('Invalid timezone')
             if err:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
-                    Gtk.ButtonsType.OK, "Warning!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
                 dialog2.format_secondary_text("{0}".format(err))
                 dialog2.run()
                 dialog2.destroy()
             else:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,
-                    Gtk.ButtonsType.OK, "Timezone changed!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, _("Timezone changed!"))
                 dialog2.format_secondary_text("{0}".format(out))
                 dialog2.run()
                 dialog2.destroy()
@@ -347,16 +343,14 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split("date -s '%s'" % entered_text), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    err = 'Time not entered correctly.'
+                    err = _('Time not entered correctly.')
             if err:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,
-                    Gtk.ButtonsType.OK, "Warning!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
                 dialog2.format_secondary_text("{0}".format(err))
                 dialog2.run()
                 dialog2.destroy()
             else:
-                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,
-                    Gtk.ButtonsType.OK, "Time changed!")
+                dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, _("Time changed!"))
                 dialog2.format_secondary_text("{0}".format(out))
                 dialog2.run()
                 dialog2.destroy()
@@ -364,7 +358,7 @@ class MainWindow(Gtk.Window):
 
 
     def __init__(self):
-        Gtk.Window.__init__(self, title="TimeSet - Manage system date and time")
+        Gtk.Window.__init__(self, title=_("TimeSet - Manage system date and time"))
 
         if os.path.isfile(program_icon):
             self.set_icon_from_file(program_icon)
@@ -379,83 +373,83 @@ class MainWindow(Gtk.Window):
         grid.set_column_spacing(1)
         vbox.add(grid)
 
-        label = Gtk.Label(label="1. Show current date and time configuration")
+        label = Gtk.Label(label=_("1. Show current date and time configuration"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 1, 1, 1)
         self.button_1 = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_INFO)
-        self.button_1.set_tooltip_text("Show current date and time configuration")
+        self.button_1.set_tooltip_text(_("Show current date and time configuration"))
         self.button_1.connect("clicked", self.show_current_date_and_time)
         grid.attach(self.button_1, Gtk.PositionType.RIGHT, 1, 1, 1)
 
-        label = Gtk.Label(label="2. Show Timezones")
+        label = Gtk.Label(label=_("2. Show timezones"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 2, 1, 1)
         self.button_2 = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_INFO)
-        self.button_2.set_tooltip_text("Show Known Timezones")
+        self.button_2.set_tooltip_text(_("Show known timezones"))
         self.button_2.connect("clicked", self.show_timezones)
         grid.attach(self.button_2, Gtk.PositionType.RIGHT, 2, 1, 1)
 
-        label = Gtk.Label(label="3. Set System Timezone")
+        label = Gtk.Label(label=_("3. Set system timezone"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 3, 1, 1)
         self.button_3 = Gtk.ToolButton(stock_id=Gtk.STOCK_APPLY)
-        self.button_3.set_tooltip_text("Set system timezone")
+        self.button_3.set_tooltip_text(_("Set system timezone"))
         self.button_3.connect("clicked", self.on_set_timezones)
         grid.attach(self.button_3, Gtk.PositionType.RIGHT, 3, 1, 1)
 
-        label = Gtk.Label(label="4. Synchronize time from the network")
+        label = Gtk.Label(label=_("4. Synchronize time from the network"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 4, 1, 1)
         self.button_4 = Gtk.ToolButton(stock_id=Gtk.STOCK_YES)
-        self.button_4.set_tooltip_text("Synchronize time from the network using NTP")
+        self.button_4.set_tooltip_text(_("Synchronize time from the network using NTP"))
         self.button_4.connect("clicked", self.on_sync_from_network)
         grid.attach(self.button_4, Gtk.PositionType.RIGHT, 4, 1, 1)
 
-        label = Gtk.Label(label="5. Choose whether NTP is enabled or not")
+        label = Gtk.Label(label=_("5. Choose whether NTP is enabled or not"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 5, 1, 1)
         self.button_5 = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_QUESTION)
-        self.button_5.set_tooltip_text("Choose whether NTP(Network Time Protocol) is enabled or not")
+        self.button_5.set_tooltip_text(_("Choose whether NTP (Network Time Protocol) is enabled or not"))
         self.button_5.connect("clicked", self.on_set_ntp_at_statup)
         grid.attach(self.button_5, Gtk.PositionType.RIGHT, 5, 1, 1)
 
-        label = Gtk.Label(label="6. H/W Clock in UTC or Local time")
+        label = Gtk.Label(label=_("6. H/W clock in UTC or local time"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 6, 1, 1)
         self.button_6 = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_QUESTION)
         self.button_6.connect("clicked", self.on_control_the_hw_clock)
-        self.button_6.set_tooltip_text("Control whether the hardware clock is in local time or not")
+        self.button_6.set_tooltip_text(_("Control whether the hardware clock is in local time or not"))
         grid.attach(self.button_6, Gtk.PositionType.RIGHT, 6, 1, 1)
 
-        label = Gtk.Label(label="7. Read time from the H/W Clock")
+        label = Gtk.Label(label=_("7. Read time from the H/W clock"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 7, 1, 1)
         self.button_7 = Gtk.ToolButton(stock_id=Gtk.STOCK_ABOUT)
-        self.button_7.set_tooltip_text("Read the time from the Hardware Clock")
+        self.button_7.set_tooltip_text(_("Read the time from the Hardware Clock"))
         self.button_7.connect("clicked", self.read_time_from_hw_clock)
         grid.attach(self.button_7, Gtk.PositionType.RIGHT, 7, 1, 1)
 
-        label = Gtk.Label(label="8. Synchronize H/W Clock to system time")
+        label = Gtk.Label(label=_("8. Synchronize H/W clock to system time"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 8, 1, 1)
         self.button_8 = Gtk.ToolButton(stock_id=Gtk.STOCK_APPLY)
-        self.button_8.set_tooltip_text("Synchronize the hardware clock to system time")
+        self.button_8.set_tooltip_text(_("Synchronize the hardware clock to system time"))
         self.button_8.connect("clicked", self.on_sync_hw_clock_to_system_time)
         grid.attach(self.button_8, Gtk.PositionType.RIGHT, 8, 1, 1)
 
-        label = Gtk.Label(label="9. Synchronize system time to H/W clock")
+        label = Gtk.Label(label=_("9. Synchronize system time to H/W clock time"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 9, 1, 1)
         self.button_9 = Gtk.ToolButton(stock_id=Gtk.STOCK_APPLY)
-        self.button_9.set_tooltip_text("Synchronize system time to the hardware clock")
+        self.button_9.set_tooltip_text(_("Synchronize system time to the hardware clock time"))
         self.button_9.connect("clicked", self.on_sync_system_time_from_hw_clock)
         grid.attach(self.button_9, Gtk.PositionType.RIGHT, 9, 1, 1)
 
-        label = Gtk.Label(label="10. Adjust the date and time manually")
+        label = Gtk.Label(label=_("10. Adjust the date and time manually"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 10, 1, 1)
         self.button_10 = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_QUESTION)
-        self.button_10.set_tooltip_text("Set the date and time manually")
+        self.button_10.set_tooltip_text(_("Set the date and time manually"))
         self.button_10.connect("clicked", self.on_set_time_manually)
         grid.attach(self.button_10, Gtk.PositionType.RIGHT, 10, 1, 1)
 
