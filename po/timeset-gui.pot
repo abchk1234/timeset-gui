@@ -160,7 +160,7 @@ msgid "TimeSet - Manage system date and time"
 msgstr ""
 
 #: timeset-gui.py:377
-msgid "1. Show current date and time"
+msgid " 1. Show current date and time"
 msgstr ""
 
 #: timeset-gui.py:381
@@ -168,7 +168,7 @@ msgid "Show current date and time configuration"
 msgstr ""
 
 #: timeset-gui.py:385
-msgid "2. Show timezones"
+msgid " 2. Show timezones"
 msgstr ""
 
 #: timeset-gui.py:389
@@ -176,11 +176,11 @@ msgid "Show known timezones"
 msgstr ""
 
 #: timeset-gui.py:393
-msgid "3. Set system timezone"
+msgid " 3. Set system timezone"
 msgstr ""
 
 #: timeset-gui.py:401
-msgid "4. Synchronize time from the network"
+msgid " 4. Synchronize time from the network"
 msgstr ""
 
 #: timeset-gui.py:405
@@ -188,7 +188,7 @@ msgid "Synchronize time from the network using NTP"
 msgstr ""
 
 #: timeset-gui.py:409
-msgid "5. Choose whether NTP is enabled"
+msgid " 5. Choose whether NTP is enabled"
 msgstr ""
 
 #: timeset-gui.py:413
@@ -196,7 +196,7 @@ msgid "Choose whether NTP (Network Time Protocol) is enabled"
 msgstr ""
 
 #: timeset-gui.py:417
-msgid "6. H/W clock in UTC or local time"
+msgid " 6. Hardware clock in UTC or local time"
 msgstr ""
 
 #: timeset-gui.py:422
@@ -204,7 +204,7 @@ msgid "Control whether the hardware clock is in UTC or local time"
 msgstr ""
 
 #: timeset-gui.py:425
-msgid "7. Read time from the H/W clock"
+msgid " 7. Read time from the hardware clock"
 msgstr ""
 
 #: timeset-gui.py:429
@@ -212,7 +212,7 @@ msgid "Read time from the hardware clock"
 msgstr ""
 
 #: timeset-gui.py:433
-msgid "8. Synchronize H/W clock to system time"
+msgid " 8. Synchronize hardware clock to system time"
 msgstr ""
 
 #: timeset-gui.py:437
@@ -220,7 +220,7 @@ msgid "Synchronize hardware clock to system time"
 msgstr ""
 
 #: timeset-gui.py:441
-msgid "9. Synchronize system time to H/W clock"
+msgid " 9. Synchronize system time to hardware clock"
 msgstr ""
 
 #: timeset-gui.py:445
