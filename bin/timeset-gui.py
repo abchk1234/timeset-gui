@@ -120,7 +120,7 @@ class set_ntp_at_statup(Gtk.Dialog):
 
 class control_the_hw_clock(Gtk.Dialog):
     def __init__(self, parent):
-        Gtk.Dialog.__init__(self, _("Control the H/W clock"), parent,
+        Gtk.Dialog.__init__(self, _("Control the hardware clock"), parent,
             Gtk.DialogFlags.MODAL, buttons=(_("UTC"), Gtk.ResponseType.OK, _("Local time"), Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
         label = Gtk.Label(_('Set the hardware clock to use'))

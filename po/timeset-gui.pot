@@ -59,7 +59,7 @@ msgid ""
 msgstr ""
 
 #: timeset-gui.py:101
-msgid "Control the H/W clock"
+msgid "Control the hardware clock"
 msgstr ""
 
 #: timeset-gui.py:102
