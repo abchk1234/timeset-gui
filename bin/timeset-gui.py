@@ -146,7 +146,7 @@ class on_read_time_from_hw_clock:
 
 class sync_system_time_from_hw_clock(Gtk.Dialog):
     def __init__(self, parent):
-        Gtk.Dialog.__init__(self, _("Sync system time from hardware clock"), parent,
+        Gtk.Dialog.__init__(self, _("Synchronize system time from hardware clock"), parent,
             Gtk.DialogFlags.MODAL, buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK))
         box = self.get_content_area()
         label = Gtk.Label(_('Synchronize system time from the hardware clock.\nClick OK and wait a few moments while the time is being synchronised.\n'))

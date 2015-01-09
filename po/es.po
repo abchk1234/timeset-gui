@@ -85,7 +85,7 @@ msgid "Hardware clock time"
 msgstr "Hora del reloj del hardware"
 
 #: timeset-gui.py:127
-msgid "Sync system time from hardware clock"
+msgid "Synchronize system time from hardware clock"
 msgstr "Hora del sistema de sincronización de reloj de hardware"
 
 #: timeset-gui.py:130
@@ -226,7 +226,7 @@ msgstr "Leer hora del reloj del hardware"
 
 #: timeset-gui.py:433
 msgid " 8. Synchronize hardware clock to system time"
-msgstr " 8. Sincronización hardware reloj a la hora del sistema"
+msgstr " 8. Sincronizar hardware reloj a la hora del sistema"
 
 #: timeset-gui.py:437
 msgid "Synchronize hardware clock to system time"

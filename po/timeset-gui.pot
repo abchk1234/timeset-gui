@@ -79,7 +79,7 @@ msgid "Hardware clock time"
 msgstr ""
 
 #: timeset-gui.py:127
-msgid "Sync system time from hardware clock"
+msgid "Synchronize system time from hardware clock"
 msgstr ""
 
 #: timeset-gui.py:130
