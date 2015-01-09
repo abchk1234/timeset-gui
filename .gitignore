@@ -1,3 +1,4 @@
 temp
 po/locale
 po/*.mo
+*~
