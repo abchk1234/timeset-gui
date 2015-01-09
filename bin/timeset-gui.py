@@ -1,17 +1,34 @@
 #!/usr/bin/python2
+##
+#  timeset-gui - A GUI to manage system date and time
+#  Copyright (C) 2013-2015 Aaditya Bagga <aaditya_gnulinux@zoho.com>
+#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  any later version.
+#
+#  This program is distributed WITHOUT ANY WARRANTY;
+#  without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#  See the GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+##
+
 import shlex
 import subprocess
 from gi.repository import Gtk
 import os.path
-import re
-import gettext
 
 program_icon = "/usr/share/icons/timeset-gui-icon.png"
+APP_NAME = "timeset-gui"
 
-# For localization
-gettext.bindtextdomain('timeset-gui', '/usr/share/locale')
-gettext.textdomain('timeset-gui')
-gettext.install('timeset-gui')
+# i18n
+import gettext
+gettext.bindtextdomain(APP_NAME, '/usr/share/locale')
+gettext.textdomain(APP_NAME)
 _ = gettext.gettext
 
 msg_warn = _('Warning!')
@@ -99,7 +116,7 @@ class set_ntp_at_statup(Gtk.Dialog):
 class control_the_hw_clock(Gtk.Dialog):
     def __init__(self, parent):
         Gtk.Dialog.__init__(self, _("Control the H/W clock"), parent,
-            Gtk.DialogFlags.MODAL, buttons=(_("UTC"), Gtk.ResponseType.OK, _("Local Time"), Gtk.ResponseType.CANCEL))
+            Gtk.DialogFlags.MODAL, buttons=(_("UTC"), Gtk.ResponseType.OK, _("Local time"), Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
         label = Gtk.Label(_('Set the hardware clock to use'))
         box.add(label)
@@ -336,6 +353,7 @@ class MainWindow(Gtk.Window):
                 sp = subprocess.Popen(shlex.split("timedatectl set-time '%s'" % entered_text), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 out, err = sp.communicate()
             else:
+                import re
                 p1 = re.match("[0-9]*:[0-9]*", "%s" % entered_text) # time, like hh:mm
                 p2 = re.match("[0-9]*-[0-9]*-[0-9]*", "%s" % entered_text) # date, like yyyy-mm-dd
                 p3 = re.match("[0-9]*-[0-9]*-[0-9]* [0-9]*:[0-9]*", "%s" % entered_text) # date and time
