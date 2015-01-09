@@ -8,7 +8,10 @@ import gettext
 
 program_icon = "/usr/share/icons/timeset-gui-icon.png"
 
-# For translation
+# For localization
+gettext.bindtextdomain('timeset-gui', '/usr/share/locale')
+gettext.textdomain('timeset-gui')
+gettext.install('timeset-gui')
 _ = gettext.gettext
 
 msg_warn = _('Warning!')
@@ -130,10 +133,10 @@ class sync_system_time_from_hw_clock(Gtk.Dialog):
 
 class set_time_manually(Gtk.Dialog):
     def __init__(self, parent):
-        Gtk.Dialog.__init__(self, _("Set time"), parent,
+        Gtk.Dialog.__init__(self, _("Set system time"), parent,
             Gtk.DialogFlags.MODAL, buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK, Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
-        label = Gtk.Label(_('Enter the time. The time may be formatted\nlike this: 2013-11-18 09:12:45\nor use just "hh:mm"'))
+        label = Gtk.Label(_('Enter the time. The time may be formatted\nlike this: 2013-11-18 09:12:45\nor just yyyy-mm-dd hh:mm'))
         box.add(label)
         self.entry = Gtk.Entry()
         box.add(self.entry)
@@ -362,7 +365,7 @@ class MainWindow(Gtk.Window):
             self.set_icon_from_file(program_icon)
 
         self.set_border_width(6)
-        self.set_size_request(280, 300)
+        self.set_size_request(320, 300)
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=1)
         self.add(vbox)
 
