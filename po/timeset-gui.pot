@@ -6,8 +6,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: 2.2\n"
+"Report-Msgid-Bugs-To: Aaditya Bagga (aaditya_gnulinux@zoho.com)\n"
 "POT-Creation-Date: 2015-01-09 18:48+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"

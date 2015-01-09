@@ -25,14 +25,19 @@ import os.path
 program_icon = "/usr/share/icons/timeset-gui-icon.png"
 APP_NAME = "timeset-gui"
 
-# i18n
+# i18n (Internationalization)
 import gettext
 gettext.bindtextdomain(APP_NAME, '/usr/share/locale')
 gettext.textdomain(APP_NAME)
 _ = gettext.gettext
 
+# l18n (Localization)
+gettext.install('timeset-gui')
+
+# Common strings
 msg_warn = _('Warning!')
 
+# Checking for systemd
 def is_systemd():
     if os.path.exists('/usr/bin/timedatectl') and not subprocess.call(["pidof", "systemd"]):
         # not subprocess.call used as it returns 0 on success

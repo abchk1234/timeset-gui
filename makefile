@@ -1,5 +1,5 @@
 NAME = timeset-gui
-VERSION = 2.0
+VERSION = 2.2
 SHELL = /bin/bash
 INSTALL = /usr/bin/install
 MSGFMT = /usr/bin/msgfmt
@@ -9,11 +9,15 @@ bindir = /usr/bin
 localedir = /usr/share/locale
 icons = /usr/share/icons
 deskdir = /usr/share/applications
-mandir = /usr/share/man/man1/
+mandir = /usr/share/man/man1
 docdir = /usr/share/doc/$(NAME)
 appdir = /usr/share/$(NAME)-$(VERSION)
 
 all:
+	cd po; make gettext
+
+clean:
+	rm po/*.mo
 
 install: all
 	$(INSTALL) -d $(DESTDIR)$(bindir)
@@ -21,9 +25,19 @@ install: all
 	$(INSTALL) -d $(DESTDIR)$(deskdir)
 	$(INSTALL) -d $(DESTDIR)$(docdir)
 	$(INSTALL) -d $(DESTDIR)$(appdir)
-	$(INSTALL) -m755 bin/timeset-gui.py $(DESTDIR)$(bindir)/timeset-gui
-	$(INSTALL) -m644 install/time-admin.png $(DESTDIR)$(icons)/timeset-gui-icon.png
-	$(INSTALL) -m644 install/time-settings.desktop $(DESTDIR)$(deskdir)
-	$(INSTALL) -m644 README.md $(DESTDIR)$(docdir)
-	$(INSTALL) -m644 COPYING $(DESTDIR)$(docdir)
-	$(INSTALL) -m644 makefile $(DESTDIR)$(appdir)
+	$(INSTALL) -m755 bin/$(NAME).py $(DESTDIR)$(bindir)/$(NAME)
+	$(INSTALL) -m644 install/time-admin.png $(DESTDIR)$(icons)/$(NAME)-icon.png
+	$(INSTALL) -m644 install/time-settings.desktop $(DESTDIR)$(deskdir)/$(NAME).desktop
+	$(INSTALL) -m644 README.md $(DESTDIR)$(docdir)/README.md
+	$(INSTALL) -m644 COPYING $(DESTDIR)$(docdir)/COPYING
+	$(INSTALL) -m644 makefile $(DESTDIR)$(appdir)/makefile
+	cp -r po/locale $(DESTDIR)/usr/share
+
+uninstall:
+	rm $(DESTDIR)$(bindir)/$(NAME)
+	rm $(DESTDIR)$(icons)/$(NAME)-icon.png
+	rm $(DESTDIR)$(deskdir)/$(NAME).desktop
+	rm $(DESTDIR)$(docdir)/README.md
+	rm $(DESTDIR)$(docdir)/COPYING
+	rm $(DESTDIR)$(appdir)/makefile
+	rm $(DESTDIR)/usr/share/locale/*/LC_MESSAGES/$(NAME).mo
