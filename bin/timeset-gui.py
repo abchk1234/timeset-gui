@@ -380,6 +380,18 @@ class MainWindow(Gtk.Window):
                 dialog2.destroy()
         dialog.destroy()
 
+    @staticmethod
+    def about_dialog(self, widget):
+        aboutdialog = Gtk.AboutDialog()
+        aboutdialog.set_logo_icon_name(Gtk.STOCK_ABOUT)
+        aboutdialog.set_program_name("timeset-gui")
+        aboutdialog.set_version("v2.2")
+        aboutdialog.set_comments(_("A GUI to manage system date and time \n"))
+        aboutdialog.set_website("https://github.com/aadityabagga/timeset-gui")
+        aboutdialog.set_website_label("Website \n")
+        aboutdialog.run()
+        aboutdialog.destroy()
+
 
     def __init__(self):
         Gtk.Window.__init__(self, title=_("TimeSet - Manage system date and time"))
@@ -476,6 +488,14 @@ class MainWindow(Gtk.Window):
         self.button_10.set_tooltip_text(_("Set the date and time manually"))
         self.button_10.connect("clicked", self.on_set_time_manually)
         grid.attach(self.button_10, Gtk.PositionType.RIGHT, 10, 1, 1)
+
+        label = Gtk.Label(label=_("11. About"))
+        label.set_alignment(0, .5)
+        grid.attach(label, Gtk.PositionType.LEFT, 11, 1, 1)
+        self.button_11 = Gtk.ToolButton(stock_id=Gtk.STOCK_ABOUT)
+        self.button_11.set_tooltip_text(_("About this program"))
+        self.button_11.connect("clicked", self.about_dialog, "about")
+        grid.attach(self.button_11, Gtk.PositionType.RIGHT, 11, 1, 1)
 
 
 if __name__ == '__main__':
