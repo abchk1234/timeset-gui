@@ -1,0 +1,17 @@
+#! /bin/sh
+# create_pot_file.sh: create pot file for translation
+
+NAME=timeset-gui
+VER=2.2
+
+# Change to the bin directory
+cd ../bin
+
+# Get the pot file
+xgettext --from-code=UTF-8 --package-name=$NAME --package-version=$VER --msgid-bugs-address=aaditya_gnulinux@zoho.com \
+	 --keyword=translatable --output=$NAME.pot $NAME.py
+
+# Move the pot file to the po folder
+mv $NAME.pot ../po
+
+exit 0
