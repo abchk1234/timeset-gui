@@ -123,7 +123,7 @@ class control_the_hw_clock(Gtk.Dialog):
         Gtk.Dialog.__init__(self, _("Control the hardware clock"), parent,
             Gtk.DialogFlags.MODAL, buttons=(_("UTC"), Gtk.ResponseType.OK, _("Local time"), Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
-        label = Gtk.Label(_('Set the hardware clock to use'))
+        label = Gtk.Label(_('Set the hardware clock to use \n'))
         box.add(label)
         self.show_all()
 

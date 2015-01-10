@@ -71,7 +71,7 @@ msgid "Local time"
 msgstr ""
 
 #: timeset-gui.py:126
-msgid "Set the hardware clock to use"
+msgid "Set the hardware clock to use \n"
 msgstr ""
 
 #: timeset-gui.py:133
