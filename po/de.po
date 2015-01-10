@@ -138,7 +138,7 @@ msgid ""
 "This feature is not handled by this program."
 msgstr ""
 "Damit dies funktioniert ntpd muss vorhanden sein. \n"
-"Furthur Sie benötigen, bearbeiten müssen /etc/ntp.conf (oder ähnlich) Datei, und dann"
+"Furthur Sie benötigen, bearbeiten müssen /etc/ntp.conf (oder ähnlich) Datei, und dann "
 "aktivieren Sie den NTP-Daemon zu dem Booten starten. \n"
 "Diese Funktion wird von diesem Programm behandelt ."
 

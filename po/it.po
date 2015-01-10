@@ -232,7 +232,7 @@ msgstr "Leggere il tempo dall'orologio hardware"
 
 #: timeset-gui.py:456
 msgid " 8. Synchronize hardware clock to system time"
-msgstr " Orologio hardware 8. Sincronizza per ora di sistema"
+msgstr " 8. Sincronizzare l'orologio hardware ora del sistema"
 
 #: timeset-gui.py:460
 msgid "Synchronize hardware clock to system time"
