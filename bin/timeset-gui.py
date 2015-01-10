@@ -308,8 +308,7 @@ class MainWindow(Gtk.Window):
             dialog2.run()
             dialog2.destroy()
         else:
-            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,
-                Gtk.ButtonsType.OK, _("Success! Time updated."))
+            dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, _("Success! Time updated."))
             dialog2.format_secondary_text("{0}".format(out))
             dialog2.run()
             dialog2.destroy()
