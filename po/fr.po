@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: timeset-gui-2.2\n"
 "Report-Msgid-Bugs-To: aaditya_gnulinux@zoho.com\n"
-"POT-Creation-Date: 2015-01-10 16:39+0530\n"
+"POT-Creation-Date: 2015-01-10 16:48+0530\n"
 "PO-Revision-Date: 2015-01-10 07:55+0000\n"
 "Last-Translator:  <manjaro@localhost.localdomain>\n"
 "Language-Team: French\n"
@@ -89,13 +89,8 @@ msgid "Synchronize system time from hardware clock"
 msgstr "Synchroniser l'heure du système de l'horloge matérielle"
 
 #: timeset-gui.py:152
-msgid ""
-"Synchronize system time from the hardware clock.\n"
-"Click OK and wait a few moments while the time is being synchronised.\n"
+msgid "Synchronize system time from the hardware clock. \n"
 msgstr ""
-"Synchroniser l'heure du système de l'horloge matérielle. \n"
-"Cliquez sur OK et attendez quelques instants tandis que le temps est "
-"synchronisé. \n"
 
 #: timeset-gui.py:158
 msgid "Set system time"
@@ -177,7 +172,7 @@ msgstr "Le temps a changé!"
 
 #: timeset-gui.py:389
 msgid "A GUI to manage system date and time \n"
-msgstr ""
+msgstr "Une interface graphique pour gérer la date et l'heure du système \n"
 
 #: timeset-gui.py:397
 msgid "TimeSet - Manage system date and time"
@@ -261,8 +256,16 @@ msgstr "Régler la date et l'heure manuellement"
 
 #: timeset-gui.py:492
 msgid "11. About"
-msgstr ""
+msgstr "11. Sur"
 
 #: timeset-gui.py:496
 msgid "About this program"
-msgstr ""
+msgstr "À propos de ce programme"
+
+#~ msgid ""
+#~ "Synchronize system time from the hardware clock.\n"
+#~ "Click OK and wait a few moments while the time is being synchronised.\n"
+#~ msgstr ""
+#~ "Synchroniser l'heure du système de l'horloge matérielle. \n"
+#~ "Cliquez sur OK et attendez quelques instants tandis que le temps est "
+#~ "synchronisé. \n"
