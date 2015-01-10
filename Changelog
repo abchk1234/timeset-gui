@@ -1,0 +1,10 @@
+2.0 (Dec 2014)
+Add support for non-systemd systems.
+
+2.1 (Dec 2014)
+Minor bugfix.
+
+2.2 (10 Jan 2014)
+Add support for translations (thx to Ayceman for the idea).
+Initially translated in French, German, Italian, and Spanish languages.
+About dialog added.
