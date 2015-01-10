@@ -1,11 +1,12 @@
 #! /bin/sh
 # create_pot_file.sh: create pot file for translation
+# Meant to be run from the top level of the project directory
 
 NAME=timeset-gui
 VER=2.2
 
 # Change to the bin directory
-cd ../bin
+cd bin
 
 # Get the pot file
 xgettext --from-code=UTF-8 --package-name=$NAME --package-version=$VER --msgid-bugs-address=aaditya_gnulinux@zoho.com \
