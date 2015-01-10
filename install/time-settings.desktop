@@ -1,9 +1,19 @@
 [Desktop Entry]
 Name=Time Settings
+Name[de]=Zeiteinstellungen
+Name[es]=Ajustes de tiempo
+Name[fr]=Réglages de l'heure
+Name[it]=Impostazioni ora
+Comment=A GUI for managing system date and time
+Comment[de]=Eine GUI für die Verwaltung von Systemdatum und -zeit
+Comment[es]=Una interfaz gráfica de usuario para la gestión de la fecha y hora del sistema
+Comment[fr]=Une interface graphique pour gérer la date et l'heure du système
+Comment[it]=Una GUI per la gestione di data e ora del sistema
 Exec=gksudo timeset-gui
-Comment="A GUI for managing system date and time"
 Icon=timeset-gui-icon
+Terminal=false
 NoDisplay=false
 Type=Application
 Categories=System;
+StartupNotify=true
 Encoding=UTF-8
