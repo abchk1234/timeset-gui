@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: timeset-gui-2.2\n"
 "Report-Msgid-Bugs-To: aaditya_gnulinux@zoho.com\n"
-"POT-Creation-Date: 2015-01-10 16:48+0530\n"
+"POT-Creation-Date: 2015-01-10 17:17+0530\n"
 "PO-Revision-Date: 2015-01-09 20:34+0000\n"
 "Last-Translator:  <manjaro@localhost.localdomain>\n"
 "Language-Team: German\n"
@@ -28,7 +28,7 @@ msgstr "Aktuelles Datum und Uhrzeit"
 msgid "Known timezones"
 msgstr "Bekannte Zeitzonen"
 
-#: timeset-gui.py:103 timeset-gui.py:432
+#: timeset-gui.py:103 timeset-gui.py:431
 msgid "Set system timezone"
 msgstr "Set System Zeitzone"
 
@@ -171,94 +171,94 @@ msgid "Time changed!"
 msgstr "Zeit verändert!"
 
 #: timeset-gui.py:389
-msgid "A GUI to manage system date and time \n"
-msgstr "Eine GUI, um Systemdatum und -zeit verwalten \n"
+msgid "A GUI to manage system date and time"
+msgstr "Eine GUI, um Systemdatum und -zeit verwalten"
 
-#: timeset-gui.py:397
+#: timeset-gui.py:396
 msgid "TimeSet - Manage system date and time"
 msgstr "TimeSet - Verwalten Sie Systemdatum und zeit"
 
-#: timeset-gui.py:412
+#: timeset-gui.py:411
 msgid " 1. Show current date and time"
 msgstr " 1. Zeigen Sie Datum und Uhrzeit"
 
-#: timeset-gui.py:416
+#: timeset-gui.py:415
 msgid "Show current date and time configuration"
 msgstr "Zeigen Sie Datum und Uhrzeit Konfiguration"
 
-#: timeset-gui.py:420
+#: timeset-gui.py:419
 msgid " 2. Show timezones"
 msgstr " 2. Zeigen Sie Zeitzonen"
 
-#: timeset-gui.py:424
+#: timeset-gui.py:423
 msgid "Show known timezones"
 msgstr "Zeitzonen bekannt anzeigen"
 
-#: timeset-gui.py:428
+#: timeset-gui.py:427
 msgid " 3. Set system timezone"
 msgstr " 3. Stellen Sie System Zone"
 
-#: timeset-gui.py:436
+#: timeset-gui.py:435
 msgid " 4. Synchronize time from the network"
 msgstr " 4. Synchronisieren der Zeit aus dem Netz"
 
-#: timeset-gui.py:440
+#: timeset-gui.py:439
 msgid "Synchronize time from the network using NTP"
 msgstr "Synchronisieren der Zeit aus dem Netz mit NTP"
 
-#: timeset-gui.py:444
+#: timeset-gui.py:443
 msgid " 5. Choose whether NTP is enabled"
 msgstr " 5. Wählen Sie, ob NTP aktiviert ist"
 
-#: timeset-gui.py:448
+#: timeset-gui.py:447
 msgid "Choose whether NTP (Network Time Protocol) is enabled"
 msgstr "Wählen Sie, ob NTP (Network Time Protocol) aktiviert ist"
 
-#: timeset-gui.py:452
+#: timeset-gui.py:451
 msgid " 6. Hardware clock in UTC or local time"
 msgstr " 6. Hardware Uhr in UTC oder lokale Zeit"
 
-#: timeset-gui.py:457
+#: timeset-gui.py:456
 msgid "Control whether the hardware clock is in UTC or local time"
 msgstr "Steuern Sie, ob die Hardware-Uhr ist in UTC oder lokale Zeit"
 
-#: timeset-gui.py:460
+#: timeset-gui.py:459
 msgid " 7. Read time from the hardware clock"
 msgstr " 7. Lesen Zeit von der Hardware-Uhr"
 
-#: timeset-gui.py:464
+#: timeset-gui.py:463
 msgid "Read time from the hardware clock"
 msgstr "Lesen Sie Zeit aus der Hardware-Uhr"
 
-#: timeset-gui.py:468
+#: timeset-gui.py:467
 msgid " 8. Synchronize hardware clock to system time"
 msgstr " 8. Synchronisieren Hardware-Uhr auf der Systemzeit"
 
-#: timeset-gui.py:472
+#: timeset-gui.py:471
 msgid "Synchronize hardware clock to system time"
 msgstr "Synchronisieren Sie Hardware-Uhr auf der Systemzeit"
 
-#: timeset-gui.py:476
+#: timeset-gui.py:475
 msgid " 9. Synchronize system time to hardware clock"
 msgstr " 9. Synchronisiere Systemzeit, um Hardware-Uhr"
 
-#: timeset-gui.py:480
+#: timeset-gui.py:479
 msgid "Synchronize system time to hardware clock time"
 msgstr "Synchronisieren Sie System Zeit, um Hardware-Uhr Zeit"
 
-#: timeset-gui.py:484
+#: timeset-gui.py:483
 msgid "10. Adjust the date and time manually"
 msgstr "10. Stellen Sie das Datum und die Uhrzeit manuell"
 
-#: timeset-gui.py:488
+#: timeset-gui.py:487
 msgid "Set the date and time manually"
 msgstr "Stellen Sie das Datum und die Uhrzeit manuell"
 
-#: timeset-gui.py:492
+#: timeset-gui.py:491
 msgid "11. About"
 msgstr "11. Über"
 
-#: timeset-gui.py:496
+#: timeset-gui.py:495
 msgid "About this program"
 msgstr "Über dieses Programm"
 

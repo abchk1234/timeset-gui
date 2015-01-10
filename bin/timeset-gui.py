@@ -386,9 +386,8 @@ class MainWindow(Gtk.Window):
         aboutdialog.set_logo_icon_name(Gtk.STOCK_ABOUT)
         aboutdialog.set_program_name("timeset-gui")
         aboutdialog.set_version("v2.2")
-        aboutdialog.set_comments(_("A GUI to manage system date and time \n"))
-        aboutdialog.set_website("https://github.com/aadityabagga/timeset-gui")
-        aboutdialog.set_website_label("Website \n")
+        aboutdialog.set_comments(_("A GUI to manage system date and time"))
+        aboutdialog.set_website_label("https://github.com/aadityabagga/timeset-gui")
         aboutdialog.run()
         aboutdialog.destroy()
 

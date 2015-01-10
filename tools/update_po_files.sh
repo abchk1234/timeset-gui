@@ -8,7 +8,7 @@ NAME=timeset-gui
 cd po
 
 for i in *.po ; do
-	msgmerge --update --no-fuzzy-matching --backup=none $i $NAME.pot
+	msgmerge --update --backup=none $i $NAME.pot
 done
 
 exit 0
