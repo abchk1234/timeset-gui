@@ -1,5 +1,5 @@
 NAME = timeset-gui
-VERSION = 2.2
+VERSION = 2.2.1
 SHELL = /bin/bash
 INSTALL = /usr/bin/install
 MSGFMT = /usr/bin/msgfmt
@@ -31,13 +31,17 @@ install: all
 	$(INSTALL) -m644 README.md $(DESTDIR)$(docdir)/README.md
 	$(INSTALL) -m644 COPYING $(DESTDIR)$(docdir)/COPYING
 	$(INSTALL) -m644 makefile $(DESTDIR)$(appdir)/makefile
-	cp -r po/locale $(DESTDIR)/usr/share
+	for file in po/*.mo; \
+	do \
+		lang=$$(echo $$file | $(SED) -e 's#.*/\([^/]\+\).mo#\1#'); \
+		$(INSTALL) -d $(DESTDIR)$(localedir)/$$lang/LC_MESSAGES; \
+		$(INSTALL) -m644 $$file  $(DESTDIR)$(localedir)/$$lang/LC_MESSAGES/$(NAME).mo; \
+	done
 
 uninstall:
 	rm $(DESTDIR)$(bindir)/$(NAME)
 	rm $(DESTDIR)$(icons)/$(NAME)-icon.png
 	rm $(DESTDIR)$(deskdir)/$(NAME).desktop
-	rm $(DESTDIR)$(docdir)/README.md
-	rm $(DESTDIR)$(docdir)/COPYING
-	rm $(DESTDIR)$(appdir)/makefile
+	rm -r $(DESTDIR)$(docdir)
+	rm -r $(DESTDIR)$(appdir)
 	rm $(DESTDIR)/usr/share/locale/*/LC_MESSAGES/$(NAME).mo
