@@ -14,6 +14,6 @@ Icon=timeset-gui-icon
 Terminal=false
 NoDisplay=false
 Type=Application
-Categories=System;
+Categories=Settings;
 StartupNotify=true
 Encoding=UTF-8
