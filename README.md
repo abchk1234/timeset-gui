@@ -34,6 +34,6 @@ Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/ti
 
 #Links-
 
-https://forum.manjaro.org/index.php?topic=7067.0
+https://classicforum.manjaro.org/index.php?topic=7067.0
 
 https://github.com/aadityabagga/timeset
