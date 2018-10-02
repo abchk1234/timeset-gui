@@ -89,7 +89,7 @@ class on_show_timezones:
         if is_systemd():
             sp = subprocess.Popen(shlex.split('timedatectl list-timezones'), stdout=subprocess.PIPE)
         else:
-            p1 = subprocess.Popen(shlex.split('find -L /usr/share/zoneinfo/posix -mindepth 2 -type f -printf "%P\n"'), stdout=subprocess.PIPE)
+            p1 = subprocess.Popen(shlex.split('find -L /usr/share/zoneinfo -mindepth 2 ! -path \'*/posix/*\' ! -path \'*/right/*\' -type f -printf "%P\n"'), stdout=subprocess.PIPE)
             sp = subprocess.Popen(["sort"], stdin=p1.stdout, stdout=subprocess.PIPE)
         out, err = sp.communicate()
         textbuffer.set_text("{0}".format(out))
@@ -105,11 +105,11 @@ class set_timezone(Gtk.Dialog):
         box = self.get_content_area()
         # Get current timezone
         p1 = subprocess.Popen(shlex.split('readlink /etc/localtime'), stdout=subprocess.PIPE)
-        sp = subprocess.Popen(shlex.split('cut -f 6-7 -d "/"'), stdin=p1.stdout, stdout=subprocess.PIPE)
+        sp = subprocess.Popen(shlex.split('cut -f 5- -d "/"'), stdin=p1.stdout, stdout=subprocess.PIPE)
         out, err = sp.communicate()
         label = Gtk.Label()
-	text = _('Enter the timezone.') + ' ' + _('It should be like') + ' \n' + _('Continent/City') + ' - ' + 'Europe/Berlin\n\n' + _('Current timezone: ') + "{0}".format(out)
-	label.set_text(text)
+        text = _('Enter the timezone.') + ' ' + _('It should be like') + ' \n' + _('Continent/City') + ' - ' + 'Europe/Berlin\n\n' + _('Current timezone: ') + "{0}".format(out)
+        label.set_text(text)
         box.add(label)
         self.entry = Gtk.Entry()
         box.add(self.entry)
@@ -337,8 +337,8 @@ class MainWindow(Gtk.Window):
                 sp = subprocess.Popen(shlex.split("timedatectl set-timezone {0}".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 out, err = sp.communicate()
             else:
-                if os.path.isfile('/usr/share/zoneinfo/posix/{0}'.format(entered_text)):
-                    sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/posix/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                if os.path.isfile('/usr/share/zoneinfo/{0}'.format(entered_text)):
+                    sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
                     err = _('Invalid timezone')
@@ -464,7 +464,7 @@ class MainWindow(Gtk.Window):
         label = Gtk.Label(label=_(" 7. Read time from the hardware clock"))
         label.set_alignment(0, .5)
         grid.attach(label, Gtk.PositionType.LEFT, 7, 1, 1)
-        self.button_7 = Gtk.ToolButton(stock_id=Gtk.STOCK_ABOUT)
+        self.button_7 = Gtk.ToolButton(stock_id=Gtk.STOCK_DIALOG_INFO)
         self.button_7.set_tooltip_text(_("Read time from the hardware clock"))
         self.button_7.connect("clicked", self.read_time_from_hw_clock)
         grid.attach(self.button_7, Gtk.PositionType.RIGHT, 7, 1, 1)
