@@ -1,38 +1,42 @@
 Its a graphical interface written in python for managing system date and time.
 
-#Dependencies-
+# Dependencies
 
-gksu (for becoming root when running the application from system menu)
+* gksu (for becoming root when running the application from system menu)
 
-ntp (for synchronising time from the network)
+* ntp (for synchronising time from the network)
 
-python2-gobject
+* python-gobject
 
-#Installation-
+# Installation
 
 (as root)
 
 <pre>
+~~~~
  # make install
+~~~~
 </pre>
 
 For Manjaro Linux users, its available in the Manjaro Linux repository (To check use <i>pacman -Ss timeset-gui</i>).
 
 Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/timeset-gui/).
 
-#Usage-
+# Usage-
 
 (as root)
 
 <pre>
+~~~~
  # timeset-gui
+~~~~
 </pre>
 
 #Screenshot
 
-<a href="http://s1198.photobucket.com/user/chk1827/media/timeset-gui-2.png.html" target="_blank"><img src="http://i1198.photobucket.com/albums/aa447/chk1827/timeset-gui-2.png" border="0" alt=" photo timeset-gui-2.png" width=270 height=305/></a>
+<a href="assets/timeset-gui-2.png" target="_blank"><img src="timeset-gui-2.png" border="0" alt="photo timeset-gui-2.png" width=270 height=305/></a>
 
-#Links-
+# Links
 
 https://classicforum.manjaro.org/index.php?topic=7067.0
 
