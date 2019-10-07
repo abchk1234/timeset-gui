@@ -398,7 +398,7 @@ class MainWindow(Gtk.Window):
 
 
     def __init__(self):
-        Gtk.Window.__init__(self, title=_("Manage system date and time"))
+        Gtk.Window.__init__(self, title=_("Time and Date Settings"))
 
         if os.path.isfile(program_icon):
             self.set_icon_from_file(program_icon)

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: aaditya_gnulinux@zoho.com\n"
-"POT-Creation-Date: 2019-10-07 21:41+0530\n"
+"POT-Creation-Date: 2019-10-07 23:03+0530\n"
 "PO-Revision-Date: 2018-12-30 01:12+0000\n"
 "Last-Translator: Jaroslav Štefka <jaroslav.stefka1977@gmail.com>, 2018\n"
 "Language-Team: Slovak (https://www.transifex.com/anticapitalista/teams/10162/"
@@ -183,9 +183,8 @@ msgid "A GUI to manage system date and time"
 msgstr "GUI na správu dátumu a času systému"
 
 #: timeset-gui.py:401
-#, fuzzy
-msgid "Manage system date and time"
-msgstr "GUI na správu dátumu a času systému"
+msgid "Time and Date Settings"
+msgstr "Nastavenia času a dátumu"
 
 #: timeset-gui.py:416
 msgid " 1. Show current date and time"
@@ -271,5 +270,6 @@ msgstr "11. O"
 msgid "About this program"
 msgstr "O programe"
 
-#~ msgid "Time and Date Settings"
-#~ msgstr "Nastavenia času a dátumu"
+#, fuzzy
+#~ msgid "Manage system date and time"
+#~ msgstr "GUI na správu dátumu a času systému"
