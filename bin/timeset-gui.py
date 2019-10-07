@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 ##
 #  timeset-gui - A GUI to manage system date and time
 #  Copyright (C) 2013-2019 Aaditya Bagga <aaditya_gnulinux@zoho.com>
@@ -66,7 +66,7 @@ class on_show_current_date_and_time:
         else:
             sp = subprocess.Popen(shlex.split('date'), stdout=subprocess.PIPE)
         out, err = sp.communicate()
-        textbuffer.set_text("{0}".format(out))
+        textbuffer.set_text("{0}".format(out.decode('utf-8')))
         window2.connect("destroy", lambda q: Gtk.main_quit())
         window2.show_all()
         Gtk.main()
@@ -92,7 +92,7 @@ class on_show_timezones:
             p1 = subprocess.Popen(shlex.split('find -L /usr/share/zoneinfo -mindepth 2 ! -path \'*/posix/*\' ! -path \'*/right/*\' -type f -printf "%P\n"'), stdout=subprocess.PIPE)
             sp = subprocess.Popen(["sort"], stdin=p1.stdout, stdout=subprocess.PIPE)
         out, err = sp.communicate()
-        textbuffer.set_text("{0}".format(out))
+        textbuffer.set_text("{0}".format(out.decode('utf-8')))
 
         window2.connect("destroy", lambda q: Gtk.main_quit())
         window2.show_all()
@@ -108,7 +108,7 @@ class set_timezone(Gtk.Dialog):
         sp = subprocess.Popen(shlex.split('cut -f 5- -d "/"'), stdin=p1.stdout, stdout=subprocess.PIPE)
         out, err = sp.communicate()
         label = Gtk.Label()
-        text = _('Enter the timezone.') + ' ' + _('It should be like') + ' \n' + _('Continent/City') + ' - ' + 'Europe/Berlin\n\n' + _('Current timezone: ') + "{0}".format(out)
+        text = _('Enter the timezone. It should be like \nContinent/City - Europe/Berlin\n\n') + _('Current timezone: ') + "{0}".format(out.decode('utf-8'))
         label.set_text(text)
         box.add(label)
         self.entry = Gtk.Entry()
@@ -145,7 +145,7 @@ class on_read_time_from_hw_clock:
         textbuffer = viewbox.get_buffer()
         sp = subprocess.Popen(shlex.split('/sbin/hwclock -D'), stdout=subprocess.PIPE)
         out, err = sp.communicate()
-        textbuffer.set_text("{0}".format(out))
+        textbuffer.set_text("{0}".format(out.decode('utf-8')))
         window2.connect("destroy", lambda q: Gtk.main_quit())
         window2.show_all()
         Gtk.main()
@@ -181,7 +181,7 @@ class MainWindow(Gtk.Window):
             dialog2.destroy()
         else:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, _("System time synchronized to hardware clock!"))
-            dialog2.format_secondary_text("{0}".format(out))
+            dialog2.format_secondary_text("{0}".format(out.decode('utf-8')))
             dialog2.run()
             dialog2.destroy()
 
@@ -196,7 +196,7 @@ class MainWindow(Gtk.Window):
         else:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,
                 Gtk.ButtonsType.OK, _("Hardware clock synchronized to system time!"))
-            dialog2.format_secondary_text("{0}".format(out))
+            dialog2.format_secondary_text("{0}".format(out.decode('utf-8')))
             dialog2.run()
             dialog2.destroy()
 
@@ -275,7 +275,7 @@ class MainWindow(Gtk.Window):
                 dialog2.destroy()
             else:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, _("NTP enabled!"))
-                dialog2.format_secondary_text("{0}".format(out))
+                dialog2.format_secondary_text("{0}".format(out.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
         if response == Gtk.ResponseType.CANCEL:
@@ -297,7 +297,7 @@ class MainWindow(Gtk.Window):
                 dialog2.destroy()
             else:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO,Gtk.ButtonsType.OK, _("NTP disabled!"))
-                dialog2.format_secondary_text("{0}".format(out))
+                dialog2.format_secondary_text("{0}".format(out.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
         dialog.destroy()
@@ -315,7 +315,7 @@ class MainWindow(Gtk.Window):
             dialog2.destroy()
         else:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, _("Success! Time updated."))
-            dialog2.format_secondary_text("{0}".format(out))
+            dialog2.format_secondary_text("{0}".format(out.decode('utf-8')))
             dialog2.run()
             dialog2.destroy()
 
@@ -349,7 +349,7 @@ class MainWindow(Gtk.Window):
                 dialog2.destroy()
             else:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, _("Timezone changed!"))
-                dialog2.format_secondary_text("{0}".format(out))
+                dialog2.format_secondary_text("{0}".format(out.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
         dialog.destroy()
@@ -380,7 +380,7 @@ class MainWindow(Gtk.Window):
                 dialog2.destroy()
             else:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.INFO, Gtk.ButtonsType.OK, _("Time changed!"))
-                dialog2.format_secondary_text("{0}".format(out))
+                dialog2.format_secondary_text("{0}".format(out.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
         dialog.destroy()
