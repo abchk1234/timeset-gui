@@ -18,7 +18,9 @@ Its a graphical interface written in python for managing system date and time.
 
 For Manjaro Linux users, its available in the Manjaro Linux repository (To check use <i>pacman -Ss timeset-gui</i>).
 
-Available for Arch Linux users in the AUR (https://aur.archlinux.org/packages/timeset-gui/).
+Available for Arch Linux users in the [AUR](https://aur.archlinux.org/packages/timeset-gui/).
+
+Available for MX Linux users as [mx-timeset-gui](https://github.com/MX-Linux/mx-timeset).
 
 ## Usage
 
