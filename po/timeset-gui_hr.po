@@ -1,60 +1,70 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the timeset-gui package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Translators:
+# Ivica  Kolić <ikoli@yahoo.com>, 2019
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: timeset-gui 2.4\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: aaditya_gnulinux@zoho.com\n"
 "POT-Creation-Date: 2019-10-07 21:41+0530\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-12-30 01:12+0000\n"
+"Last-Translator: Ivica  Kolić <ikoli@yahoo.com>, 2019\n"
+"Language-Team: Croatian (https://www.transifex.com/anticapitalista/"
+"teams/10162/hr/)\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: timeset-gui.py:38
 msgid "Warning!"
-msgstr ""
+msgstr "Upozorenje!"
 
 #: timeset-gui.py:57
 msgid "Current date and time"
-msgstr ""
+msgstr "Trenutni datum i vrijeme"
 
 #: timeset-gui.py:78
 msgid "Known timezones"
-msgstr ""
+msgstr "Poznate vremenske zone"
 
 #: timeset-gui.py:103 timeset-gui.py:436
 msgid "Set system timezone"
-msgstr ""
+msgstr "Postavi vremensku zonu sustava"
 
 #: timeset-gui.py:111
+#, fuzzy
 msgid ""
 "Enter the timezone. It should be like \n"
 "Continent/City - Europe/Berlin\n"
 "\n"
 msgstr ""
+"Unesite vremensku zonu. Trebalo bi biti kao\n"
+"Kontinent/grad - Europa/Berlin"
 
 #: timeset-gui.py:111
+#, fuzzy
 msgid "Current timezone: "
-msgstr ""
+msgstr "Trenutni datum i vrijeme"
 
 #: timeset-gui.py:120
 msgid "Enable or disable NTP"
-msgstr ""
+msgstr "Omogući ili onemogući NTP"
 
 #: timeset-gui.py:121
 msgid "Enable"
-msgstr ""
+msgstr "Omogući"
 
 #: timeset-gui.py:121
 msgid "Disable"
-msgstr ""
+msgstr "Onemogući"
 
 #: timeset-gui.py:123
 msgid ""
@@ -63,38 +73,42 @@ msgid ""
 "If NTP is enabled, the system will periodically\n"
 "synchronize time from the network."
 msgstr ""
+"Omogući ili onemogući NTP uporabu.\n"
+"NTP je kratica za Network Time Protocol.\n"
+"Ako je NTP omogućen, sustav će periodično\n"
+"sinkronizirati vrijeme sa mreže."
 
 #: timeset-gui.py:129
 msgid "Control the hardware clock"
-msgstr ""
+msgstr "Kontroliraj sat sklopovlja"
 
 #: timeset-gui.py:130
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
 #: timeset-gui.py:130
 msgid "Local time"
-msgstr ""
+msgstr "Lokalno vrijeme"
 
 #: timeset-gui.py:132
 msgid "Set the hardware clock to use \n"
-msgstr ""
+msgstr "Postavi sat sklopovlja u uporabu\n"
 
 #: timeset-gui.py:139
 msgid "Hardware clock time"
-msgstr ""
+msgstr "Vrijeme sata slopovlja"
 
 #: timeset-gui.py:155
 msgid "Synchronize system time from hardware clock"
-msgstr ""
+msgstr "Sinkroniziraj vrijeme sustava sa sata sklopovlja"
 
 #: timeset-gui.py:158
 msgid "Synchronize system time from the hardware clock. \n"
-msgstr ""
+msgstr "Sinkroniziraj vrijeme sustava sa sata sklopovlja.\n"
 
 #: timeset-gui.py:164
 msgid "Set system time"
-msgstr ""
+msgstr "Postavi vrijeme sustava"
 
 #: timeset-gui.py:167
 msgid ""
@@ -105,19 +119,19 @@ msgstr ""
 
 #: timeset-gui.py:183
 msgid "System time synchronized to hardware clock!"
-msgstr ""
+msgstr "Vrijeme sustava sinkronizirano sa satom sklopovlja!"
 
 #: timeset-gui.py:198
 msgid "Hardware clock synchronized to system time!"
-msgstr ""
+msgstr "Sat sklopovlja sinkroniziran sa vremenom sustava!"
 
 #: timeset-gui.py:227
 msgid "Hardware clock set to UTC!"
-msgstr ""
+msgstr "Sat skopovlja postavljen na UTC!"
 
 #: timeset-gui.py:251
 msgid "Hardware clock set to local time!"
-msgstr ""
+msgstr "Sat skopovlja postavljen na lokalno vrijeme!"
 
 #: timeset-gui.py:268 timeset-gui.py:290
 msgid "ntpd service not found"
@@ -133,75 +147,76 @@ msgstr ""
 
 #: timeset-gui.py:277
 msgid "NTP enabled!"
-msgstr ""
+msgstr "NTP omogućen!"
 
 #: timeset-gui.py:299
 msgid "NTP disabled!"
-msgstr ""
+msgstr "NTP onemogućen!"
 
 #: timeset-gui.py:310
 msgid "Could not find ntpdate"
-msgstr ""
+msgstr "Ne mogu naći ntpdate"
 
 #: timeset-gui.py:317
 msgid "Success! Time updated."
-msgstr ""
+msgstr "Uspjeh! Vrijeme je ažurirano."
 
 #: timeset-gui.py:344
 msgid "Invalid timezone"
-msgstr ""
+msgstr "Neispravna vremenska zona"
 
 #: timeset-gui.py:351
 msgid "Timezone changed!"
-msgstr ""
+msgstr "Vremenska zona je promijenjena!"
 
 #: timeset-gui.py:375
 msgid "Time not entered correctly."
-msgstr ""
+msgstr "Vrijeme nije pravilno unešeno."
 
 #: timeset-gui.py:382
 msgid "Time changed!"
-msgstr ""
+msgstr "Vrijeme je promijenjeno!"
 
 #: timeset-gui.py:394
 msgid "A GUI to manage system date and time"
 msgstr ""
 
 #: timeset-gui.py:401
+#, fuzzy
 msgid "Manage system date and time"
-msgstr ""
+msgstr "Trenutni datum i vrijeme"
 
 #: timeset-gui.py:416
 msgid " 1. Show current date and time"
-msgstr ""
+msgstr "1. Pokaži trenutan datum i vrijeme"
 
 #: timeset-gui.py:420
 msgid "Show current date and time configuration"
-msgstr ""
+msgstr "Pokaži konfiguraciju trenutnog datuma i vremena"
 
 #: timeset-gui.py:424
 msgid " 2. Show timezones"
-msgstr ""
+msgstr "2. Pokaži vremenske zone"
 
 #: timeset-gui.py:428
 msgid "Show known timezones"
-msgstr ""
+msgstr "Pokaži poznate vremenske zone"
 
 #: timeset-gui.py:432
 msgid " 3. Set system timezone"
-msgstr ""
+msgstr "3. Postavi vremensku zonu sustava"
 
 #: timeset-gui.py:440
 msgid " 4. Synchronize time from the network"
-msgstr ""
+msgstr "4. Sinkroniziraj vrijeme sa mreže"
 
 #: timeset-gui.py:444
 msgid "Synchronize time from the network using NTP"
-msgstr ""
+msgstr "Sinkroniziraj vrijeme sa mreže koristeći NTP"
 
 #: timeset-gui.py:448
 msgid " 5. Choose whether NTP is enabled"
-msgstr ""
+msgstr "5. Odaberi je li NTP omogućen"
 
 #: timeset-gui.py:452
 msgid "Choose whether NTP (Network Time Protocol) is enabled"
@@ -209,7 +224,7 @@ msgstr ""
 
 #: timeset-gui.py:456
 msgid " 6. Hardware clock in UTC or local time"
-msgstr ""
+msgstr "6. Sat sklopovlja na UTC ili lokalnom vremenu"
 
 #: timeset-gui.py:461
 msgid "Control whether the hardware clock is in UTC or local time"
@@ -217,11 +232,11 @@ msgstr ""
 
 #: timeset-gui.py:464
 msgid " 7. Read time from the hardware clock"
-msgstr ""
+msgstr "7. Čitaj vrijeme sa sata sklopovlja"
 
 #: timeset-gui.py:468
 msgid "Read time from the hardware clock"
-msgstr ""
+msgstr "Čitaj vrijeme sa sata sklopovlja"
 
 #: timeset-gui.py:472
 msgid " 8. Synchronize hardware clock to system time"
@@ -254,3 +269,6 @@ msgstr ""
 #: timeset-gui.py:500
 msgid "About this program"
 msgstr ""
+
+#~ msgid "Time and Date Settings"
+#~ msgstr "Postavke vremena i datuma"

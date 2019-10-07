@@ -31,9 +31,9 @@ install: all
 	$(INSTALL) -m644 README.md $(DESTDIR)$(docdir)/README.md
 	$(INSTALL) -m644 COPYING $(DESTDIR)$(docdir)/COPYING
 	$(INSTALL) -m644 makefile $(DESTDIR)$(appdir)/makefile
-	for file in po/*.mo; \
+	for file in mo/*.mo; \
 	do \
-		lang=$$(echo $$file | $(SED) -e 's#.*/\([^/]\+\).mo#\1#'); \
+		lang=$$(echo $$file | $(SED) -e 's#$(NAME)_##' -e 's#.*/\([^/]\+\).mo#\1#'); \
 		$(INSTALL) -d $(DESTDIR)$(localedir)/$$lang/LC_MESSAGES; \
 		$(INSTALL) -m644 $$file  $(DESTDIR)$(localedir)/$$lang/LC_MESSAGES/$(NAME).mo; \
 	done

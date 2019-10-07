@@ -1,60 +1,69 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the timeset-gui package.
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# Translators:
+# Eadwine Rose, 2018
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: timeset-gui 2.4\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: aaditya_gnulinux@zoho.com\n"
 "POT-Creation-Date: 2019-10-07 21:41+0530\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-12-30 01:12+0000\n"
+"Last-Translator: Eadwine Rose, 2018\n"
+"Language-Team: Dutch (https://www.transifex.com/anticapitalista/teams/10162/"
+"nl/)\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: timeset-gui.py:38
 msgid "Warning!"
-msgstr ""
+msgstr "Waarschuwing!"
 
 #: timeset-gui.py:57
 msgid "Current date and time"
-msgstr ""
+msgstr "Huidige datum en tijd"
 
 #: timeset-gui.py:78
 msgid "Known timezones"
-msgstr ""
+msgstr "Bekende tijdzones"
 
 #: timeset-gui.py:103 timeset-gui.py:436
 msgid "Set system timezone"
-msgstr ""
+msgstr "Systeem tijdzone instellen"
 
 #: timeset-gui.py:111
+#, fuzzy
 msgid ""
 "Enter the timezone. It should be like \n"
 "Continent/City - Europe/Berlin\n"
 "\n"
 msgstr ""
+"Voer de tijdzone in. Het moet zijn als\n"
+"Continent/Stad - Europe/Berlin"
 
 #: timeset-gui.py:111
+#, fuzzy
 msgid "Current timezone: "
-msgstr ""
+msgstr "Huidige datum en tijd"
 
 #: timeset-gui.py:120
 msgid "Enable or disable NTP"
-msgstr ""
+msgstr "NTP in- of uitschakelen"
 
 #: timeset-gui.py:121
 msgid "Enable"
-msgstr ""
+msgstr "Inschakelen"
 
 #: timeset-gui.py:121
 msgid "Disable"
-msgstr ""
+msgstr "Uitschakelen"
 
 #: timeset-gui.py:123
 msgid ""
@@ -63,38 +72,42 @@ msgid ""
 "If NTP is enabled, the system will periodically\n"
 "synchronize time from the network."
 msgstr ""
+"NTP gebruik in- of uitschakelen.\n"
+"NTP staat voor Network Time Protocol.\n"
+"Als NTP ingeschakeld is zal het systeem periodiek\n"
+"de tijd vanuit het netwerk synchroniseren."
 
 #: timeset-gui.py:129
 msgid "Control the hardware clock"
-msgstr ""
+msgstr "Beheer de hardware klok"
 
 #: timeset-gui.py:130
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
 #: timeset-gui.py:130
 msgid "Local time"
-msgstr ""
+msgstr "Locale tijd"
 
 #: timeset-gui.py:132
 msgid "Set the hardware clock to use \n"
-msgstr ""
+msgstr "Stel de hardware klok om te gebruiken in\n"
 
 #: timeset-gui.py:139
 msgid "Hardware clock time"
-msgstr ""
+msgstr "Hardware klok tijd"
 
 #: timeset-gui.py:155
 msgid "Synchronize system time from hardware clock"
-msgstr ""
+msgstr "Synchroniseer systeemtijd met de hardware klok"
 
 #: timeset-gui.py:158
 msgid "Synchronize system time from the hardware clock. \n"
-msgstr ""
+msgstr "Synchroniseer systeemtijd met de hardware klok. \n"
 
 #: timeset-gui.py:164
 msgid "Set system time"
-msgstr ""
+msgstr "Systeemtijd instellen"
 
 #: timeset-gui.py:167
 msgid ""
@@ -102,26 +115,29 @@ msgid ""
 "like this: 2013-11-18 09:12:45\n"
 "(using the template yyyy-mm-dd hh:mm)"
 msgstr ""
+"Voer de tijd in. De tijd kan zo opgesteld\n"
+"worden: 2013-11-18 09:12:45\n"
+"(gebruik het model jjjj-mm-dd uu:mm)"
 
 #: timeset-gui.py:183
 msgid "System time synchronized to hardware clock!"
-msgstr ""
+msgstr "Systeemtijd gesynchroniseerd naar de hardware klok!"
 
 #: timeset-gui.py:198
 msgid "Hardware clock synchronized to system time!"
-msgstr ""
+msgstr "Hardware klok ingesteld naar systeemtijd!"
 
 #: timeset-gui.py:227
 msgid "Hardware clock set to UTC!"
-msgstr ""
+msgstr "Hardware klok ingesteld naar UTC!"
 
 #: timeset-gui.py:251
 msgid "Hardware clock set to local time!"
-msgstr ""
+msgstr "Hardware klok ingesteld naar lokale tijd!"
 
 #: timeset-gui.py:268 timeset-gui.py:290
 msgid "ntpd service not found"
-msgstr ""
+msgstr "ntpd service niet gevonden"
 
 #: timeset-gui.py:270 timeset-gui.py:292
 msgid ""
@@ -130,127 +146,136 @@ msgid ""
 "the ntp daemon to start at boot.\n"
 "This feature is not handled by this program."
 msgstr ""
+"Om dit te laten werken moet ntpd aanwezig zijn.\n"
+"Ook kan het nodig zijn om het /etc/ntp.conf (of soortgelijk) bestand aan te "
+"passen, en dan de ntp daemon in te schakelen om te starten bij het "
+"opstarten.\n"
+"Deze mogelijkheid wordt niet door dit programma uitgevoerd."
 
 #: timeset-gui.py:277
 msgid "NTP enabled!"
-msgstr ""
+msgstr "NTP ingeschakeld!"
 
 #: timeset-gui.py:299
 msgid "NTP disabled!"
-msgstr ""
+msgstr "NTP uitgeschakeld!"
 
 #: timeset-gui.py:310
 msgid "Could not find ntpdate"
-msgstr ""
+msgstr "Kon ntpdate niet vinden"
 
 #: timeset-gui.py:317
 msgid "Success! Time updated."
-msgstr ""
+msgstr "Succes! Tijd bijgewerkt."
 
 #: timeset-gui.py:344
 msgid "Invalid timezone"
-msgstr ""
+msgstr "Ongeldige tijdzone"
 
 #: timeset-gui.py:351
 msgid "Timezone changed!"
-msgstr ""
+msgstr "Tijdzone gewijzigd!"
 
 #: timeset-gui.py:375
 msgid "Time not entered correctly."
-msgstr ""
+msgstr "Tijd niet correct ingevoerd."
 
 #: timeset-gui.py:382
 msgid "Time changed!"
-msgstr ""
+msgstr "Tijd gewijzigd!"
 
 #: timeset-gui.py:394
 msgid "A GUI to manage system date and time"
-msgstr ""
+msgstr "Een GUI om de systeemdatum en tijd te beheren"
 
 #: timeset-gui.py:401
+#, fuzzy
 msgid "Manage system date and time"
-msgstr ""
+msgstr "Een GUI om de systeemdatum en tijd te beheren"
 
 #: timeset-gui.py:416
 msgid " 1. Show current date and time"
-msgstr ""
+msgstr "1. Laat huidige datum en tijd zien"
 
 #: timeset-gui.py:420
 msgid "Show current date and time configuration"
-msgstr ""
+msgstr "Laat huidige datum en tijd configuratie zien"
 
 #: timeset-gui.py:424
 msgid " 2. Show timezones"
-msgstr ""
+msgstr "2. Laat tijdzones zien"
 
 #: timeset-gui.py:428
 msgid "Show known timezones"
-msgstr ""
+msgstr "Laat bekende tijdzones zien"
 
 #: timeset-gui.py:432
 msgid " 3. Set system timezone"
-msgstr ""
+msgstr "3. Systeem tijdzone instellen"
 
 #: timeset-gui.py:440
 msgid " 4. Synchronize time from the network"
-msgstr ""
+msgstr "4. Synchroniseer tijd van het netwerk"
 
 #: timeset-gui.py:444
 msgid "Synchronize time from the network using NTP"
-msgstr ""
+msgstr "Synchroniseer tijd van het netwerk met NTP"
 
 #: timeset-gui.py:448
 msgid " 5. Choose whether NTP is enabled"
-msgstr ""
+msgstr "5. Kies of NTP ingeschakeld is"
 
 #: timeset-gui.py:452
 msgid "Choose whether NTP (Network Time Protocol) is enabled"
-msgstr ""
+msgstr "Kies of NTP (Network Time Protocol) ingeschakeld is"
 
 #: timeset-gui.py:456
 msgid " 6. Hardware clock in UTC or local time"
-msgstr ""
+msgstr "6. Hardware klok in UTC of lokale tijd"
 
 #: timeset-gui.py:461
 msgid "Control whether the hardware clock is in UTC or local time"
-msgstr ""
+msgstr "Beheer of de hardware klok in UTC is of in lokale tijd"
 
 #: timeset-gui.py:464
 msgid " 7. Read time from the hardware clock"
-msgstr ""
+msgstr "7. Lees tijd van de hardware klok"
 
 #: timeset-gui.py:468
 msgid "Read time from the hardware clock"
-msgstr ""
+msgstr "Lees tijd van de hardware klok"
 
 #: timeset-gui.py:472
 msgid " 8. Synchronize hardware clock to system time"
-msgstr ""
+msgstr "8. Synchroniseer hardware klok naar systeemtijd"
 
 #: timeset-gui.py:476
 msgid "Synchronize hardware clock to system time"
-msgstr ""
+msgstr "Synchroniseer hardware klok naar systeemtijd"
 
 #: timeset-gui.py:480
 msgid " 9. Synchronize system time to hardware clock"
-msgstr ""
+msgstr "9. Synchroniseer systeemtijd naar de hardware klok"
 
 #: timeset-gui.py:484
 msgid "Synchronize system time to hardware clock time"
-msgstr ""
+msgstr "Synchroniseer systeemtijd naar de hardware klok"
 
 #: timeset-gui.py:488
 msgid "10. Adjust the date and time manually"
-msgstr ""
+msgstr "10. Stel datum en tijd handmatig in"
 
 #: timeset-gui.py:492
 msgid "Set the date and time manually"
-msgstr ""
+msgstr "Stel datum en tijd handmatig in"
 
 #: timeset-gui.py:496
 msgid "11. About"
-msgstr ""
+msgstr "11. Over"
 
 #: timeset-gui.py:500
 msgid "About this program"
-msgstr ""
+msgstr "Over dit programma"
+
+#~ msgid "Time and Date Settings"
+#~ msgstr "Tijd en Datum Instellingen"

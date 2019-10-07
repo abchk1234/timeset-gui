@@ -3,7 +3,7 @@
 # Meant to be run from the top level of the project directory
 
 NAME=timeset-gui
-VER=2.2
+VER=2.4
 
 # Change to the bin directory
 cd bin

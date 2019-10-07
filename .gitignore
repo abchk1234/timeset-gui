@@ -1,4 +1,6 @@
-temp
+/tmp/*
+/test/*
 po/locale
 po/*.mo
+mo/*.mo
 *~
