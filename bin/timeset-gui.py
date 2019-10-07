@@ -176,7 +176,7 @@ class MainWindow(Gtk.Window):
         out, err = sp.communicate()
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
-            dialog2.format_secondary_text("{0}".format(err))
+            dialog2.format_secondary_text("{0}".format(err.decode('utf-8')))
             dialog2.run()
             dialog2.destroy()
         else:
@@ -190,7 +190,7 @@ class MainWindow(Gtk.Window):
         out, err = sp.communicate()
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
-            dialog2.format_secondary_text("{0}".format(err))
+            dialog2.format_secondary_text("{0}".format(err.decode('utf-8')))
             dialog2.run()
             dialog2.destroy()
         else:
@@ -220,7 +220,7 @@ class MainWindow(Gtk.Window):
                     out, err = sp.communicate()
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
-                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.format_secondary_text("{0}".format(err.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
             else:
@@ -244,7 +244,7 @@ class MainWindow(Gtk.Window):
                     out, err = sp.communicate()
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
-                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.format_secondary_text("{0}".format(err.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
             else:
@@ -265,12 +265,12 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split('rc-update add ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    err = _('ntpd service not found')
+                    err = _('ntpd service not found').encode()
             else:
-                err = _('For this to work, ntpd needs to be present.\nAlso, you may need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.')
+                err = _('For this to work, ntpd needs to be present.\nAlso, you may need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.').encode()
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
-                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.format_secondary_text("{0}".format(err.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
             else:
@@ -287,12 +287,12 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split('rc-update del ntpd'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    err = _('ntpd service not found')
+                    err = _('ntpd service not found').encode()
             else:
-                err = _('For this to work, ntpd needs to be present.\nAlso, you may need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.')
+                err = _('For this to work, ntpd needs to be present.\nAlso, you may need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.').encode()
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
-                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.format_secondary_text("{0}".format(err.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
             else:
@@ -307,10 +307,10 @@ class MainWindow(Gtk.Window):
             sp = subprocess.Popen(shlex.split("/usr/sbin/ntpdate -u 0.pool.ntp.org"), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = sp.communicate()
         else:
-            err = _('Could not find ntpdate')
+            err = _('Could not find ntpdate').encode()
         if err:
             dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
-            dialog2.format_secondary_text("{0}".format(err))
+            dialog2.format_secondary_text("{0}".format(err.decode('utf-8')))
             dialog2.run()
             dialog2.destroy()
         else:
@@ -341,10 +341,10 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split("ln -sf /usr/share/zoneinfo/{0} /etc/localtime".format(entered_text)), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    err = _('Invalid timezone')
+                    err = _('Invalid timezone').encode()
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
-                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.format_secondary_text("{0}".format(err.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
             else:
@@ -372,10 +372,10 @@ class MainWindow(Gtk.Window):
                     sp = subprocess.Popen(shlex.split("date -s '%s'" % entered_text), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                     out, err = sp.communicate()
                 else:
-                    err = _('Time not entered correctly.')
+                    err = _('Time not entered correctly.').encode()
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING, Gtk.ButtonsType.OK, msg_warn)
-                dialog2.format_secondary_text("{0}".format(err))
+                dialog2.format_secondary_text("{0}".format(err.decode('utf-8')))
                 dialog2.run()
                 dialog2.destroy()
             else:
