@@ -8,3 +8,8 @@ Minor bugfix.
 Add support for translations (thx to Ayceman for the idea).
 Initially translated in French, German, Italian, and Spanish languages.
 About dialog added.
+
+2.4 (8 Oct 2019)
+Add support for python3.
+Update translations, thanks to the MX project.
+Update documentation.
