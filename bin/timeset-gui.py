@@ -1,7 +1,7 @@
 #!/usr/bin/python2
 ##
 #  timeset-gui - A GUI to manage system date and time
-#  Copyright (C) 2013-2015 Aaditya Bagga <aaditya_gnulinux@zoho.com>
+#  Copyright (C) 2013-2019 Aaditya Bagga <aaditya_gnulinux@zoho.com>
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -120,7 +120,7 @@ class set_ntp_at_statup(Gtk.Dialog):
         Gtk.Dialog.__init__(self, _("Enable or disable NTP"), parent,
             Gtk.DialogFlags.MODAL, buttons=(_("Enable"), Gtk.ResponseType.OK, _("Disable"), Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
-        label = Gtk.Label(_('Enable or disable NTP usage.\nNTP stands for Network Time Protocol.\nIf NTP is enabled the system will periodically\nsynchronize time from the network.'))
+        label = Gtk.Label(_('Enable or disable NTP usage.\nNTP stands for Network Time Protocol.\nIf NTP is enabled, the system will periodically\nsynchronize time from the network.'))
         box.add(label)
         self.show_all()
 
@@ -267,7 +267,7 @@ class MainWindow(Gtk.Window):
                 else:
                     err = _('ntpd service not found')
             else:
-                err = _('For this to work ntpd needs to be present.\nFurther you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.')
+                err = _('For this to work, ntpd needs to be present.\nAlso, you may need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.')
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
                 dialog2.format_secondary_text("{0}".format(err))
@@ -289,7 +289,7 @@ class MainWindow(Gtk.Window):
                 else:
                     err = _('ntpd service not found')
             else:
-                err = _('For this to work ntpd needs to be present.\nFurther you may need need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.')
+                err = _('For this to work, ntpd needs to be present.\nAlso, you may need to edit /etc/ntp.conf (or similar) file, and then enable the ntp daemon to start at boot.\nThis feature is not handled by this program.')
             if err:
                 dialog2 = Gtk.MessageDialog(self, 0, Gtk.MessageType.WARNING,Gtk.ButtonsType.OK, msg_warn)
                 dialog2.format_secondary_text("{0}".format(err))
