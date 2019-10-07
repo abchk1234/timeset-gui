@@ -103,13 +103,16 @@ class set_timezone(Gtk.Dialog):
         Gtk.Dialog.__init__(self, _("Set system timezone"), parent,
             Gtk.DialogFlags.MODAL, buttons=(Gtk.STOCK_OK, Gtk.ResponseType.OK, Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL))
         box = self.get_content_area()
-        # Get current timezone
-        p1 = subprocess.Popen(shlex.split('readlink /etc/localtime'), stdout=subprocess.PIPE)
-        sp = subprocess.Popen(shlex.split('cut -f 5- -d "/"'), stdin=p1.stdout, stdout=subprocess.PIPE)
-        out, err = sp.communicate()
-        label = Gtk.Label()
-        text = _('Enter the timezone. It should be like \nContinent/City - Europe/Berlin\n\n') + _('Current timezone: ') + "{0}".format(out.decode())
-        label.set_text(text)
+        if is_systemd():
+            label = Gtk.Label(_('Enter the timezone. It should be like \nContinent/City - Europe/Berlin'))
+        else:
+            # Get current timezone
+            p1 = subprocess.Popen(shlex.split('readlink /etc/localtime'), stdout=subprocess.PIPE)
+            sp = subprocess.Popen(shlex.split('cut -f 5- -d "/"'), stdin=p1.stdout, stdout=subprocess.PIPE)
+            out, err = sp.communicate()
+            label = Gtk.Label()
+            text = _('Enter the timezone. It should be like \nContinent/City - Europe/Berlin\n\n') + _('Current timezone: ') + "{0}".format(out.decode())
+            label.set_text(text)
         box.add(label)
         self.entry = Gtk.Entry()
         box.add(self.entry)
