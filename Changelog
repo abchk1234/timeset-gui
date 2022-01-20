@@ -13,3 +13,6 @@ About dialog added.
 Add support for python3.
 Update translations, thanks to the MX project.
 Update documentation.
+
+2.4.1 (21 Jan 2022)
+Explicitly require GTK+3

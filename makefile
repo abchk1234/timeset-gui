@@ -1,5 +1,5 @@
 NAME = timeset-gui
-VERSION = 2.4
+VERSION = 2.4.1
 SHELL = /bin/bash
 INSTALL = /usr/bin/install
 MSGFMT = /usr/bin/msgfmt

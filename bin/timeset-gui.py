@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 ##
 #  timeset-gui - A GUI to manage system date and time
 #  Copyright (C) 2013-2019 Aaditya Bagga <aaditya_gnulinux@zoho.com>
@@ -19,6 +19,8 @@
 
 import shlex
 import subprocess
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 import os.path
 
@@ -393,9 +395,9 @@ class MainWindow(Gtk.Window):
         aboutdialog = Gtk.AboutDialog()
         aboutdialog.set_logo_icon_name(Gtk.STOCK_ABOUT)
         aboutdialog.set_program_name("timeset-gui")
-        aboutdialog.set_version("v2.4")
+        aboutdialog.set_version("v2.4.1")
         aboutdialog.set_comments(_("A GUI to manage system date and time"))
-        aboutdialog.set_website_label("https://github.com/aadityabagga/timeset-gui")
+        aboutdialog.set_website_label("https://github.com/abchk1234/timeset-gui")
         aboutdialog.run()
         aboutdialog.destroy()
 
