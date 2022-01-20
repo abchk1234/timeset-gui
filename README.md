@@ -37,4 +37,4 @@ Available for MX Linux 17 users as [mx-timeset-gui](https://github.com/MX-Linux/
 
 * https://classicforum.manjaro.org/index.php?topic=7067.0
 
-* https://github.com/aadityabagga/timeset
+* https://github.com/abchk1234/timeset
